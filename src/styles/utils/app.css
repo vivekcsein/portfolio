@@ -1,0 +1,11 @@
+.main {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+.screen-height {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  height: auto;
+}
