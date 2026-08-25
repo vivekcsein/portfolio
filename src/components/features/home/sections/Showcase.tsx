@@ -1,8 +1,7 @@
 "use client";
 
-import Icon from "@/components/ui/icon/Icon";
+import ModelSlot from "@/components/ui/models/ModelSlot";
 import Reveal from "@/components/ui/reveal/Reveal";
-import TiltCard from "@/components/ui/tilt-card/TiltCard";
 import homeConfig from "@/packages/configs/home.config";
 
 const Showcase = () => {
@@ -27,14 +26,14 @@ const Showcase = () => {
           className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-4"
         >
           {showcase.items.map((item) => (
-            <TiltCard key={item.title} maxTilt={16}>
-              <div className="flex aspect-square flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-gradient-to-br from-primary/15 via-card to-fuchsia-400/10 p-6 text-center">
-                <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                  <Icon name={item.icon} className="size-6" />
-                </div>
-                <p className="text-sm font-medium">{item.title}</p>
-              </div>
-            </TiltCard>
+            <div key={item.title} className="flex flex-col gap-3">
+              <ModelSlot
+                reservedFor={item.title}
+                label={item.title}
+                className="aspect-square"
+              />
+              <p className="text-center text-sm font-medium">{item.title}</p>
+            </div>
           ))}
         </Reveal>
 

@@ -1,0 +1,496 @@
+/* -----------------------------------------------------------------------------
+   Header, desktop mega-menu, and mobile drawer.
+   Structural state (which dropdown/accordion is open, drawer open/closed)
+   is owned by NavigationProvider (components/providers/NavigationProvider.tsx)
+   and expressed here purely as class toggles — "is-visible", "is-open",
+   "active", "expanded". This file only ever reacts to those classes.
+
+   Breakpoint: 1024px matches BREAKPOINTS.lg in
+   packages/configs/theme.config.ts — desktop nav shows at/above it, the
+   mobile toggle + drawer below it. Keep both in sync if either changes.
+   ----------------------------------------------------------------------------- */
+
+.header {
+  position: relative;
+  z-index: 40;
+  width: 100%;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0.75rem 1.5rem;
+}
+
+/* ---------- Desktop nav ---------- */
+
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: block;
+  }
+}
+
+.nav-links-list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.nav-item {
+  position: relative;
+}
+
+/* Applies whether the item rendered as a <Link> (plain destination) or a
+   <Button variant="ghost"> (dropdown trigger) — both need to look identical. */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.nav-btn:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  transform: none;
+  filter: none;
+}
+
+.nav-btn.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.chevron-arrow {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.nav-btn[aria-expanded="true"] .chevron-arrow {
+  transform: rotate(-135deg);
+}
+
+/* ---------- Mega dropdown ---------- */
+
+.mega-dropdown {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 50%;
+  min-width: 10rem;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  background: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px
+    color-mix(in oklch, var(--foreground) 12%, transparent);
+}
+
+.mega-dropdown.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.mega-dropdown-inner {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1.5rem;
+  padding: 1.25rem;
+}
+
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 10rem;
+}
+
+.column-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+}
+
+.column-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  list-style: none;
+}
+
+.dropdown-link-item {
+  display: block;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-link-item:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* ---------- Header actions (Sign In + mobile toggle) ---------- */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Hamburger — three <span> children, no icon font/SVG. Ghost variant
+   (see button.css) already strips background/border, so this only needs
+   to size the tap target and position the lines. */
+.mobile-toggle-btn {
+  display: inline-flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .mobile-toggle-btn {
+    display: none;
+  }
+}
+
+.mobile-toggle-btn:hover {
+  transform: none;
+  filter: none;
+}
+
+.mobile-toggle-btn span {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--foreground);
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+
+/* Morph into an X when open */
+.mobile-toggle-btn.open span:nth-child(1) {
+  transform: translateY(0.4rem) rotate(45deg);
+}
+
+.mobile-toggle-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle-btn.open span:nth-child(3) {
+  transform: translateY(-0.4rem) rotate(-45deg);
+}
+
+/* ---------- Mobile drawer ---------- */
+
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background-color: color-mix(in oklch, var(--popover) 40%, transparent);
+
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s;
+}
+
+.mobile-drawer-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 1024px) {
+  .mobile-drawer-backdrop {
+    display: none;
+  }
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  /* left: -100%; */
+  right: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  width: min(20rem, 85vw);
+  height: 100%;
+
+  background: var(--background);
+  border-left: 1px solid var(--border);
+  box-shadow: -12px 0 30px
+    color-mix(in oklch, var(--foreground) 12%, transparent);
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+  .mobile-drawer {
+    display: none;
+  }
+}
+
+.mobile-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-accordion-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  text-align: left;
+}
+
+.mobile-accordion-trigger:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  transform: none;
+  filter: none;
+}
+
+.mobile-accordion-trigger.expanded .chevron-arrow {
+  transform: rotate(-135deg);
+}
+
+.mobile-accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.25s ease,
+    opacity 0.2s ease;
+}
+
+.mobile-accordion-content > * {
+  overflow: hidden;
+}
+
+.mobile-accordion-content.expanded-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.mobile-subcat {
+  padding: 0.25rem 0.5rem 0.75rem 1rem;
+}
+
+.mobile-subcat-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+  margin-bottom: 0.4rem;
+}
+
+.mobile-subcat-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  list-style: none;
+}
+
+.mobile-link-item a {
+  display: block;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+/* Padding and border-top for this footer come from the generic
+   .drawer-footer slot it renders inside (see Header.tsx + drawer.css) —
+   nothing nav-specific needed here beyond the button's own layout. */
+.mobile-sign-btn {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+}
+
+/* -----------------------------------------------------------------------------
+   Site Footer — one responsive component for both breakpoints (see
+   Footer.tsx). Mobile: stacked. Desktop (min-width: 768px, media query
+   below): brand block and nav columns side by side.
+   ----------------------------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--background);
+  padding: 3rem 1.5rem 1.5rem;
+}
+
+.site-footer-inner {
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.site-footer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.site-footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 24rem;
+}
+
+.site-footer-tagline {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Site-footer social icons (.site-footer-social / .site-footer-social-link
+   / .site-footer-tooltip) are NOT styled here — Footer.tsx renders them
+   through <SocialLinks /> (components/layouts/SocialLinks.tsx), which
+   owns those class names via its own styles/layouts/social-links.css.
+   Keep that split: don't redefine them in this file too. */
+
+.site-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.site-footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.site-footer-heading {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--foreground);
+}
+
+.site-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.site-footer-link {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.site-footer-link:hover {
+  color: var(--foreground);
+}
+
+.site-footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.site-footer-copyright {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+/* Desktop: brand block + nav columns side by side, copyright left-aligned */
+@media (min-width: 768px) {
+  .site-footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .site-footer-nav {
+    grid-template-columns: repeat(3, 1fr);
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .site-footer-bottom,
+  .site-footer-copyright {
+    text-align: left;
+  }
+}

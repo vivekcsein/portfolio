@@ -1,5 +1,4 @@
 import "@/styles/ui/docs.css";
-
 interface DocsLayoutPageProps {
   children: React.ReactNode;
 }

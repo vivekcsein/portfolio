@@ -70,17 +70,30 @@ const appConfig = {
     home: "/",
     about: "/about",
 
+    docs: "/docs",
+    projects: "/projects",
+    techStack: "/tech-stack",
+    blogs: "/blogs",
+    journey: "/journey",
+
     robots: "/robots.txt",
     sitemap: "/sitemap.xml",
     favicon: "/favicon.ico",
     logo: "/logo.png",
 
-    blogs: "/blogs",
-    docs: "/docs",
     contact: "/contact",
     privacy: "/privacy",
     terms: "/terms",
     notFound: "/404",
+
+    services: {
+      webDevelopment: "/services/web-development",
+      performance: "/services/performance",
+      backend: "/services/backend",
+      security: "/services/authentication-security",
+      seo: "/services/seo-ad-monetization",
+      ar: "/services/ar-experiences",
+    },
   },
 
   api: {

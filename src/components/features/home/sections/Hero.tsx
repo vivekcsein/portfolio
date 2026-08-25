@@ -44,11 +44,11 @@ const Hero = () => {
 
           <h1 className="text-4xl leading-tight font-bold text-balance sm:text-5xl lg:text-6xl">
             {hero.heading[0]} {hero.heading[1]}{" "}
-            <span className="bg-gradient-to-r from-primary to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-fuchsia-400 bg-clip-text text-transparent">
               {hero.highlights[0]}
             </span>{" "}
             {hero.heading[2]}{" "}
-            <span className="bg-gradient-to-r from-fuchsia-400 to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-fuchsia-400 to-primary bg-clip-text text-transparent">
               {hero.highlights[1]}
             </span>
           </h1>
@@ -77,7 +77,7 @@ const Hero = () => {
             </a>
           </div>
 
-          <div className="mt-4 flex items-center gap-4">
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3">
             <span className="text-sm text-muted-foreground">
               Connect with me
             </span>
@@ -101,10 +101,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div
-          ref={sceneRef}
-          className="relative h-[380px] md:h-[460px] lg:h-[520px]"
-        >
+        <div ref={sceneRef} className="relative h-95 md:h-115 lg:h-130">
           <HeroScene />
         </div>
       </div>

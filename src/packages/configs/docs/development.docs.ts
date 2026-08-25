@@ -1,35 +1,54 @@
 import { type DocsItem, getFilePath } from "../docs.config";
 
 const path = "/src/docs/dev";
+
 export const developmentDocs = [
   {
     key: "folder-structure-guide",
-    title: "Folder Structure Guide",
-    description: "Top 1% best practices for backend and frontend projects",
+    title: "How to Organize Your Project Folders",
+    description:
+      "Learn how to structure frontend and backend projects so your code stays clean, organized, and easy to maintain as the project grows.",
     slug: "folder-structure-guide",
     path: "development/folder-structure-guide",
     file: getFilePath(`${path}/developer/folder-structure-guide.md`),
     createdAt: "15/08/2026",
     updatedAt: "16/08/2026",
-    keywords: ["development", "backend", "frontend", "folder", "structure"],
+    keywords: [
+      "development",
+      "backend",
+      "frontend",
+      "folder",
+      "structure",
+      "project organization",
+    ],
   },
+
   {
     key: "vs-code-setup-guide",
-    title: "VS Code Setup Guide",
+    title: "VS Code Setup & Essential Shortcuts",
     description:
-      "The highest-impact keyboard shortcuts every developer should memorize first.",
+      "Set up VS Code for a smoother development workflow and learn the most useful keyboard shortcuts every developer should know.",
     slug: "vs-code-setup-guide",
     path: "development/vs-code-setup-guide",
     file: getFilePath(`${path}/developer/vs-code-setup-guide.md`),
     createdAt: "05/08/2026",
     updatedAt: "06/08/2026",
-    keywords: ["development", "developer", "vs-code", "keyboard", "shortcuts"],
+    keywords: [
+      "development",
+      "developer",
+      "vs-code",
+      "keyboard",
+      "shortcuts",
+      "editor",
+      "productivity",
+    ],
   },
+
   {
     key: "secure-client-side-data-handling-nextjs",
-    title: "Securing Data on Client Side in Next.js",
+    title: "Handling Client-Side Data Securely in Next.js",
     description:
-      "Role Based access and secure client side data handling in next.js",
+      "Understand how to protect client-side data in Next.js applications, including role-based access, permissions, and safer data-handling patterns.",
     slug: "secure-client-side-data",
     path: "development/secure-client-side-data-handling",
     file: getFilePath(`${path}/frontend/secure-cs-data-handling-next.md`),
@@ -40,15 +59,18 @@ export const developmentDocs = [
       "frontend",
       "nextjs",
       "security",
+      "client-side",
       "data",
-      "handling",
+      "role-based-access",
+      "permissions",
     ],
   },
+
   {
     key: "3d-models-setup-guide",
-    title: "Setting Up 3D Elements (GLB Models)",
+    title: "Adding 3D Models to Your Website",
     description:
-      "Reusable component setup for loading, auto-sizing, placing, and animating .glb models from your 3D designer",
+      "Learn how to load and use GLB 3D models in your frontend with reusable components, automatic sizing, positioning, and animations.",
     slug: "3d-models-setup-guide",
     path: "development/3d-models-setup-guide",
     file: getFilePath(`${path}/frontend/3d-models-setup-guide.md`),
@@ -63,6 +85,7 @@ export const developmentDocs = [
       "react-three-fiber",
       "models",
       "animation",
+      "web-3d",
     ],
   },
 ] satisfies DocsItem[];

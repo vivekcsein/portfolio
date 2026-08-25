@@ -173,10 +173,18 @@ export const homeConfig = {
       "Interactive 3D models of the tools and systems and experiences I work with.",
     cta: { label: "View 3D Showcase", href: "#showcase" },
     items: [
-      { title: "Web Apps", icon: "laptop" },
-      { title: "APIs & Backend", icon: "server" },
-      { title: "Databases", icon: "database" },
-      { title: "AR Experiences", icon: "sparkles" },
+      { title: "Web Apps", icon: "laptop", modelKey: "showcase-web-apps" },
+      {
+        title: "APIs & Backend",
+        icon: "server",
+        modelKey: "showcase-api-backend",
+      },
+      { title: "Databases", icon: "database", modelKey: "showcase-database" },
+      {
+        title: "AR Experiences",
+        icon: "sparkles",
+        modelKey: "showcase-ar-experience",
+      },
     ],
   },
 

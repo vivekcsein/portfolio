@@ -1,8 +1,8 @@
 "use client";
 
 import Icon from "@/components/ui/icon/Icon";
+import ModelSlot from "@/components/ui/models/ModelSlot";
 import Reveal from "@/components/ui/reveal/Reveal";
-import TiltCard from "@/components/ui/tilt-card/TiltCard";
 import homeConfig from "@/packages/configs/home.config";
 
 const About = () => {
@@ -11,18 +11,14 @@ const About = () => {
   return (
     <section className="px-6 py-20 md:py-28">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <Reveal direction="left" className="flex justify-center">
-          <TiltCard maxTilt={8} className="w-full max-w-sm">
-            <div className="relative flex aspect-square items-center justify-center rounded-3xl border border-border bg-gradient-to-br from-primary/15 via-transparent to-fuchsia-400/10 p-8">
-              <div className="absolute top-6 left-6 flex size-10 items-center justify-center rounded-xl border border-border bg-card">
-                <Icon name="code" className="size-4 text-primary" />
-              </div>
-
-              <div className="flex size-40 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-5xl">
-                🧑‍💻
-              </div>
-            </div>
-          </TiltCard>
+        <Reveal
+          direction="left"
+          className="w-full max-w-sm aspect-square mx-auto lg:mx-0"
+        >
+          <ModelSlot
+            reservedFor="about-avatar"
+            label="3D model — about-avatar"
+          />
         </Reveal>
 
         <Reveal direction="right" group className="flex flex-col gap-6">

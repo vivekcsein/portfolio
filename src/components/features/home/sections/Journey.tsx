@@ -57,10 +57,10 @@ const Journey = () => {
         </Reveal>
 
         <div ref={trackRef} className="relative">
-          <div className="absolute top-6 right-0 left-0 hidden h-px bg-border md:block" />
+          <div className="absolute top-6 right-0 left-0 hidden h-px bg-border lg:block" />
           <div
             ref={lineRef}
-            className="absolute top-6 right-0 left-0 hidden h-px scale-x-0 bg-primary md:block"
+            className="absolute top-6 right-0 left-0 hidden h-px scale-x-0 bg-primary lg:block"
           />
 
           <Reveal
