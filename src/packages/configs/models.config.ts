@@ -41,6 +41,12 @@ export const modelsConfig = {
       animation: "float",
     },
     {
+      key: "about-avatar",
+      src: "/models/about-avatar.glb",
+      size: 2,
+      animation: "float",
+    },
+    {
       key: "showcase-web-apps",
       src: "/models/web-apps.glb",
       size: 1.6,

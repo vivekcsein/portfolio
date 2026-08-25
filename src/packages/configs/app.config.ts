@@ -27,6 +27,7 @@ const appConfig = {
   social: {
     twitter: envPublicConfig.TWITTER,
     linkedin: envPublicConfig.LINKEDIN,
+    github: envPublicConfig.GITHUB,
   },
 
   author: {

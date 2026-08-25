@@ -1,10 +1,11 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
-
+import Link from "next/link";
 import Reveal from "@/components/ui/reveal/Reveal";
 import TiltCard from "@/components/ui/tilt-card/TiltCard";
 import homeConfig from "@/packages/configs/home.config";
+import { getTopProjects } from "@/packages/utils/projects";
 
 const Projects = () => {
   const { projects } = homeConfig;
@@ -18,7 +19,7 @@ const Projects = () => {
               {projects.eyebrow}
             </span>
             <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
-              {projects.heading}
+              {projects.title}
             </h2>
           </Reveal>
 
@@ -31,15 +32,15 @@ const Projects = () => {
         </div>
 
         <Reveal group className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {projects.items.map((project) => (
+          {getTopProjects(3).map((project) => (
             <TiltCard key={project.title} maxTilt={6}>
-              <a
+              <Link
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 transition-colors hover:border-primary/40"
               >
-                <div className="relative flex aspect-video items-center justify-center bg-gradient-to-br from-primary/20 via-muted to-fuchsia-400/10">
+                <div className="relative flex aspect-video items-center justify-center bg-linear-to-br from-primary/20 via-muted to-fuchsia-400/10">
                   <ExternalLink className="size-5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
 
@@ -50,7 +51,7 @@ const Projects = () => {
                   </p>
 
                   <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                    {project.tags.map((tag) => (
+                    {project?.tags?.map((tag) => (
                       <span
                         key={tag}
                         className="rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground"
@@ -60,7 +61,7 @@ const Projects = () => {
                     ))}
                   </div>
                 </div>
-              </a>
+              </Link>
             </TiltCard>
           ))}
         </Reveal>

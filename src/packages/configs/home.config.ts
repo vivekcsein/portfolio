@@ -1,6 +1,9 @@
 import { envPublicConfig } from "../env/public.env";
+import projectsConfig from "./projects.config";
 
 export const homeConfig = {
+  projects: projectsConfig,
+
   hero: {
     badge: "Full Stack Developer",
     heading: ["I build digital products", "that are", "and"],
@@ -32,9 +35,9 @@ export const homeConfig = {
       "react",
       "typescript",
       "nextjs",
-      "nodejs",
-      "database",
-      "code",
+      "hono",
+      "auth",
+      "lens studio",
     ],
   },
 
@@ -84,35 +87,6 @@ export const homeConfig = {
       { name: "Redux Toolkit", icon: "redux", category: "Frontend" },
       { name: "Zod", icon: "zod", category: "Others" },
       { name: "Linux", icon: "linux", category: "Others" },
-    ],
-  },
-
-  projects: {
-    eyebrow: "Featured Projects",
-    heading: "Some things I've built",
-    cta: { label: "View All Projects", href: "/docs/development" },
-    items: [
-      {
-        title: "Content Editor Platform",
-        description:
-          "A modern editor platform with theme, font customization and real-time writing experience.",
-        tags: ["Next.js", "TypeScript", "Tailwind CSS", "Zustand"],
-        href: `${envPublicConfig.GITHUB}/content-editor-platform`,
-      },
-      {
-        title: "Gaming Community Website",
-        description:
-          "Gaming community website with events, tournaments and team management.",
-        tags: ["Next.js", "GSAP", "Tailwind CSS", "Framer Motion"],
-        href: `${envPublicConfig.GITHUB}/gaming-community-website`,
-      },
-      {
-        title: "Portfolio Template",
-        description:
-          "Modern portfolio template for developers with dark mode and blog integration.",
-        tags: ["Next.js", "TypeScript", "MDX", "Tailwind CSS"],
-        href: `${envPublicConfig.GITHUB}/portfolio-template`,
-      },
     ],
   },
 
