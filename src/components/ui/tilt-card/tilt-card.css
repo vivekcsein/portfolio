@@ -1,0 +1,40 @@
+.tilt-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glare-x: 50%;
+  --glare-y: 50%;
+  perspective: 1000px;
+}
+
+.tilt-card-inner {
+  position: relative;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tilt-card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--glare-x) var(--glare-y),
+    color-mix(in oklch, var(--primary) 35%, transparent) 0%,
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.tilt-card:hover .tilt-card-glare {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card-inner {
+    transform: none;
+    transition: none;
+  }
+}

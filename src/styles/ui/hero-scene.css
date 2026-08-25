@@ -1,0 +1,18 @@
+.hero-scene {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.hero-scene canvas {
+  outline: none;
+}
+
+.hero-scene-fallback {
+  background: radial-gradient(
+    circle at center,
+    color-mix(in oklch, var(--primary) 15%, transparent),
+    transparent 70%
+  );
+}

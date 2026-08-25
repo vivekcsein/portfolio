@@ -10,4 +10,6 @@
 
 @import "./theme/sparkverse-theme.css";
 
+@import "./ui/hero-scene.css";
+
 @custom-variant dark (&:is(.dark *));

@@ -40,6 +40,11 @@ const publicEnvSchema = z.object({
     .trim()
     .default("https://www.linkedin.com/showcase/vivekcsein"),
 
+  NEXT_PUBLIC_GITHUB: z
+    .string()
+    .trim()
+    .default("https://github.com/vivekcsein"),
+
   NEXT_PUBLIC_AUTHOR_NAME: z.string().trim().default("@vivekcsein"),
 
   NEXT_PUBLIC_AUTHOR_EMAIL: z.string().trim().default("ivivekcse@gmail.com"),
@@ -72,6 +77,7 @@ export const envPublicConfig = Object.freeze({
 
   TWITTER: parsedPublicEnv.data.NEXT_PUBLIC_TWITTER,
   LINKEDIN: parsedPublicEnv.data.NEXT_PUBLIC_LINKEDIN,
+  GITHUB: parsedPublicEnv.data.NEXT_PUBLIC_GITHUB,
 
   AUTHOR_NAME: parsedPublicEnv.data.NEXT_PUBLIC_AUTHOR_NAME,
   AUTHOR_EMAIL: parsedPublicEnv.data.NEXT_PUBLIC_AUTHOR_EMAIL,

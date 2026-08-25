@@ -1,4 +1,4 @@
-import {  Fira_Code, Poppins, Roboto } from "next/font/google";
+import { Fira_Code, Poppins, Roboto } from "next/font/google";
 
 const Sans = Roboto({
   variable: "--font-plex-sans",

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
+import { Card } from "@/components/ui";
 import { docsConfig } from "@/packages/configs/docs.config";
 
 interface DocsCategoryPageProps {
@@ -42,16 +42,21 @@ const DocsCategoryPage = async ({ params }: DocsCategoryPageProps) => {
         )}
       </header>
 
-      <section className="docs-document-grid">
-        {category.children.map((doc) => (
+      <section
+        className="docs-document-grid"
+        aria-label={`${category.title} documentation`}
+      >
+        {category.children.map((child) => (
           <Link
-            key={doc.key}
-            href={`/${docsConfig.path}/${category.key}/${doc.slug}`}
+            key={child.key}
+            href={`/${docsConfig.path}/${category.key}/${child.slug}`}
             className="docs-document-card"
           >
-            <h2>{doc.title}</h2>
+            <Card className="docs-category-card-content">
+              <h2>{child.title}</h2>
 
-            {doc.description && <p>{doc.description}</p>}
+              {child.description && <p>{child.description}</p>}
+            </Card>
           </Link>
         ))}
       </section>

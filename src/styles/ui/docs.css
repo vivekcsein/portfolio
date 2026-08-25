@@ -1,0 +1,97 @@
+/* Docs pages: centered layout container */
+
+.docs-page {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+.docs-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.docs-page-header h1 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.docs-page-description {
+  max-width: 620px;
+  color: var(--muted-foreground);
+  font-size: 1.05rem;
+}
+
+.docs-back-link {
+  align-self: flex-start;
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.docs-back-link:hover {
+  text-decoration: underline;
+}
+
+/* Category grid (docs index page) */
+
+.docs-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.docs-category-card {
+  display: block;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: color-mix(in oklch, var(--card) 60%, transparent);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.docs-category-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.docs-category-card h2 {
+  margin-bottom: 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.docs-category-card p {
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+
+.docs-category-card span {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.docs-page-content {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .docs-page {
+    padding: 32px 16px 64px;
+  }
+}

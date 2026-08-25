@@ -1,0 +1,72 @@
+"use client";
+
+import { ExternalLink } from "lucide-react";
+
+import Reveal from "@/components/ui/reveal/Reveal";
+import TiltCard from "@/components/ui/tilt-card/TiltCard";
+import homeConfig from "@/packages/configs/home.config";
+
+const Projects = () => {
+  const { projects } = homeConfig;
+
+  return (
+    <section id="projects" className="px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <Reveal>
+            <span className="text-xs font-medium tracking-wide text-primary uppercase">
+              {projects.eyebrow}
+            </span>
+            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
+              {projects.heading}
+            </h2>
+          </Reveal>
+
+          <a
+            href={projects.cta.href}
+            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+          >
+            {projects.cta.label} →
+          </a>
+        </div>
+
+        <Reveal group className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {projects.items.map((project) => (
+            <TiltCard key={project.title} maxTilt={6}>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 transition-colors hover:border-primary/40"
+              >
+                <div className="relative flex aspect-video items-center justify-center bg-gradient-to-br from-primary/20 via-muted to-fuchsia-400/10">
+                  <ExternalLink className="size-5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                </div>
+
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  <h3 className="font-semibold">{project.title}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            </TiltCard>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;

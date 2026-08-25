@@ -4,14 +4,15 @@ const path = "/src/docs/personal";
 export const personalDocs = [
   // Add personal documentation here.
   {
-    key: "personal-1",
-    title: "Personal Documentation",
-    description: "Documentation related to personal projects",
-    slug: "personal-documentation",
-    path: "personal/personal-documentation",
-    file: getFilePath(`${path}/personal-documentation.md`),
-    createdAt: "04/08/2026",
-    updatedAt: "04/08/2026",
-    keywords: ["personal", "project"],
+    key: "personal-3d-models-python",
+    title: "Creating 3D Models with Python Prompts in Blender",
+    description:
+      "Creating 3D models in Blender using natural-language prompts for personal use in portfolio.",
+    slug: "personal-3d-models-python",
+    path: "personal/personal-3d-models-python",
+    file: getFilePath(`${path}/blender/personal-3d-models-python.md`),
+    createdAt: "24/08/2026",
+    updatedAt: "24/08/2026",
+    keywords: ["personal", "blender", "3d", "models", "python", "prompts"],
   },
 ] satisfies DocsItem[];

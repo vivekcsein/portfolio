@@ -87,12 +87,32 @@
 }
 
 /* Lists */
+/*
+ * Tailwind's preflight resets `list-style: none` on every <ul>/<ol>,
+ * which silently strips bullets/numbers from rendered markdown.
+ * Restore visible markers here, scoped to .markdown-body only.
+ */
 
-.markdown-body ul,
+.markdown-body ul {
+  margin: 16px 0;
+  padding-left: 1.6em;
+  color: var(--foreground);
+  list-style: disc;
+}
+
 .markdown-body ol {
   margin: 16px 0;
   padding-left: 1.6em;
   color: var(--foreground);
+  list-style: decimal;
+}
+
+.markdown-body ul ul {
+  list-style: circle;
+}
+
+.markdown-body ul ul ul {
+  list-style: square;
 }
 
 .markdown-body li {
