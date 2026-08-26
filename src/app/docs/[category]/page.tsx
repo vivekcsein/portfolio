@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Link } from "@/components/ui";
 import ContentTimeline from "@/components/ui/timeline/ContentTimeline";
 import { docsConfig } from "@/packages/configs/docs.config";
 import { normalizeContentList } from "@/packages/utils/content-normlize";
@@ -43,7 +43,11 @@ const DocsCategoryPage = async ({ params }: DocsCategoryPageProps) => {
       <div className="content-container">
         {/* Back navigation */}
         <nav className="content-navigation">
-          <Link href={`/${docsConfig.path}`} className="content-back-link">
+          <Link
+            href={`/${docsConfig.path}`}
+            variant={"primary"}
+            className="text-md"
+          >
             <span aria-hidden="true">←</span>
             <span>Back to Docs</span>
           </Link>
@@ -75,7 +79,10 @@ const DocsCategoryPage = async ({ params }: DocsCategoryPageProps) => {
         </header>
 
         {/* Documents */}
-        <ContentTimeline title={docsConfig.title} contentList={contentList} />
+        <ContentTimeline
+          heading={`Explore our best ${category.title} docs`}
+          contentList={contentList}
+        />
       </div>
     </main>
   );

@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Link } from "@/components/ui";
 import ContentTimeline from "@/components/ui/timeline/ContentTimeline";
 import projectsConfig from "@/packages/configs/projects.config";
+import { normalizeProjectsList } from "@/packages/utils/content-normlize";
 
 interface ProjectsCategoryPageProps {
   params: Promise<{ category: string }>;
@@ -24,6 +25,8 @@ const ProjectsCategoryPage = async ({ params }: ProjectsCategoryPageProps) => {
 
   if (!project) notFound();
 
+  const contentList = normalizeProjectsList(project.projectList);
+
   return (
     <main className="content-page">
       <div className="content-background" aria-hidden="true">
@@ -34,7 +37,11 @@ const ProjectsCategoryPage = async ({ params }: ProjectsCategoryPageProps) => {
 
       <div className="content-container">
         <nav className="content-navigation">
-          <Link href={projectsConfig.cta.href} className="content-back-link">
+          <Link
+            href={projectsConfig.cta.href}
+            variant={"primary"}
+            className="text-md"
+          >
             <span aria-hidden="true">←</span>
             <span>Back to Projects</span>
           </Link>
@@ -43,23 +50,26 @@ const ProjectsCategoryPage = async ({ params }: ProjectsCategoryPageProps) => {
         <header className="content-hero">
           <div className="content-badge">
             <span className="content-badge-dot" />
-            <span>Documentation</span>
+            <span>Projects</span>
           </div>
-          <h1 className="content-title">{project.title}</h1>
+          <h2 className="content-title">{project.title}</h2>
           {project.description && (
             <p className="content-description">{project.description}</p>
           )}
           <div className="content-meta">
-            <span>{project.projectList.length}</span>
+            <span>
+              {project.projectList.length}{" "}
+              {project.projectList.length === 1 ? "project" : "projects"}
+            </span>
             <span className="content-meta-separator">•</span>
-            <span>Everything you need to get started</span>
+            <span>Explore the repositories below</span>
           </div>
         </header>
 
         {/* Client-side animated timeline — data passed in, no client fetching */}
         <ContentTimeline
-          title={project.title}
-          contentList={project.projectList}
+          heading={`Explore our best ${project.title} projects`}
+          contentList={contentList}
         />
       </div>
     </main>

@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-
+import { Link } from "@/components/ui";
 import Markdown from "@/components/ui/markdown/Markdown";
 import { docsConfig } from "@/packages/configs/docs.config";
 import { getDocBySlug, getDocContent } from "@/packages/utils/get-docs";
@@ -19,9 +18,13 @@ const DocsTemplate = async ({ slug }: DocsTemplateProps) => {
   const markdown = getDocContent(doc);
 
   return (
-    <article className="hub-simple-page">
-      <header className="hub-simple-header">
-        <Link href={`/${docsConfig.path}`} className="hub-back-link">
+    <article className="content-simple-page">
+      <header className="content-simple-header">
+        <Link
+          href={`/${docsConfig.path}`}
+          className="text-md"
+          variant={"primary"}
+        >
           ← Back to Docs
         </Link>
 
@@ -30,11 +33,11 @@ const DocsTemplate = async ({ slug }: DocsTemplateProps) => {
         <h1>{doc.title}</h1>
 
         {doc.description && (
-          <p className="hub-simple-description">{doc.description}</p>
+          <p className="content-simple-description">{doc.description}</p>
         )}
       </header>
 
-      <div className="hub-simple-content">
+      <div className="content-simple-content">
         <Markdown content={markdown} />
       </div>
     </article>

@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------------
-   Content content — shared listing/detail layout for any "browse a set of
+   Content Hub — shared listing/detail layout for any "browse a set of
    categorized items" section. Currently used by both:
      - /docs        (DocsTemplate.tsx, docs/page.tsx, docs/[category]/page.tsx)
      - /projects    (projects/page.tsx, projects/[category]/page.tsx)
@@ -30,22 +30,16 @@
   letter-spacing: -0.02em;
 }
 
-.content-back-link {
-  align-self: flex-start;
-  margin-bottom: 8px;
-  color: var(--primary);
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-.content-back-link:hover {
-  text-decoration: underline;
-}
-
 .content-simple-description {
   max-width: 620px;
   color: var(--muted-foreground);
   font-size: 1.05rem;
+}
+
+.content-simple-content {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .content-page {

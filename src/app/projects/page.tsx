@@ -90,8 +90,8 @@ const ProjectsPage = () => {
                     <span>
                       {project.projectList.length}{" "}
                       {project.projectList.length === 1
-                        ? "document"
-                        : "documents"}
+                        ? "Project"
+                        : "Projects"}
                     </span>
 
                     <span aria-hidden="true">→</span>

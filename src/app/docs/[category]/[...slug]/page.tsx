@@ -17,10 +17,12 @@ export function generateStaticParams() {
   );
 }
 
-const DocsPage = async ({ params }: DocsPageProps) => {
+const DocsTemplatePage = async ({ params }: DocsPageProps) => {
   const { slug } = await params;
+
+  console.log(slug);
 
   return <DocsTemplate slug={slug} />;
 };
 
-export default DocsPage;
+export default DocsTemplatePage;

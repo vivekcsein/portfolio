@@ -37,7 +37,7 @@ const NavItem = memo(({ tab, activeId, onSelect }: NavItemProps) => {
     return (
       <li className="nav-item">
         <Link
-          variant={"default"}
+          variant="default"
           href={tab.href ?? "#"}
           className={`nav-btn ${isCurrentRoute ? "active" : ""}`}
         >
@@ -54,7 +54,7 @@ const NavItem = memo(({ tab, activeId, onSelect }: NavItemProps) => {
       onMouseLeave={onMouseLeave}
     >
       <Button
-        variant="link"
+        variant="link_secondary"
         className={`nav-btn ${isActive ? "active" : ""}`}
         aria-haspopup="true"
         aria-expanded={isActive}

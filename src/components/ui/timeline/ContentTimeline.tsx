@@ -6,24 +6,23 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { useRef } from "react";
 import KeywordsButtons from "@/components/ui/keywords/KeywordsCopy";
+import type { ContentItem } from "@/packages/utils/content-normlize";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-type ContentItem = {
-  key: string;
-  href: string;
-  title: string;
-  description?: string;
-  updatedAt: string;
-  keywords?: string[];
-};
-
 interface ContentTimelineProps {
-  title: string;
+  /** Full section heading, e.g. "Development documentation" or "Full-Stack Products". Rendered as-is — no suffix is appended. */
+  heading: string;
+  /** Small label above the heading. Defaults to "Explore". */
+  eyebrow?: string;
   contentList: ContentItem[];
 }
 
-const ContentTimeline = ({ title, contentList }: ContentTimelineProps) => {
+const ContentTimeline = ({
+  heading,
+  eyebrow = "Explore",
+  contentList,
+}: ContentTimelineProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
@@ -98,8 +97,8 @@ const ContentTimeline = ({ title, contentList }: ContentTimelineProps) => {
     >
       <div className="content-section-header">
         <div>
-          <p className="content-eyebrow">Explore</p>
-          <h2 id="content-heading">{title} documentation</h2>
+          <p className="content-eyebrow">{eyebrow}</p>
+          <h2 id="content-heading">{heading}</h2>
         </div>
         <span className="content-count">
           {String(contentList.length).padStart(2, "0")}
@@ -119,8 +118,8 @@ const ContentTimeline = ({ title, contentList }: ContentTimelineProps) => {
             >
               <Link
                 href={child.href}
-                target="_blank"
-                rel="noreferrer"
+                target={child.external ? "_blank" : undefined}
+                rel={child.external ? "noreferrer" : undefined}
                 className="timeline-card content-card"
               >
                 <div className="content-card-content">
@@ -130,7 +129,7 @@ const ContentTimeline = ({ title, contentList }: ContentTimelineProps) => {
                       <span>{child.updatedAt}</span>
                     </div>
                     <span className="content-card-arrow" aria-hidden="true">
-                      ↗
+                      {child.external ? "↗" : "→"}
                     </span>
                   </div>
 
@@ -143,8 +142,10 @@ const ContentTimeline = ({ title, contentList }: ContentTimelineProps) => {
                   </div>
 
                   <div className="content-card-footer">
-                    <span>View repository</span>
-                    <span aria-hidden="true">↗</span>
+                    <span>
+                      {child.external ? "View repository" : "Read guide"}
+                    </span>
+                    <span aria-hidden="true">{child.external ? "↗" : "→"}</span>
                   </div>
                 </div>
               </Link>

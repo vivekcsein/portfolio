@@ -20,7 +20,7 @@ export type DocsItem = {
   title: string;
   description?: string;
   slug: string;
-  path: string;
+  href: string;
   file: string;
   createdAt: string;
   updatedAt: string;

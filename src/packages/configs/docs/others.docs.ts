@@ -8,7 +8,7 @@ export const othersDocs = [
     title: "Others Documentation",
     description: "Documentation related to other projects",
     slug: "others-documentation",
-    path: "others/others-documentation",
+    href: "others/others-documentation",
     file: getFilePath(`${path}/others-documentation.md`),
     createdAt: "04/08/2026",
     updatedAt: "04/08/2026",

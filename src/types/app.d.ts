@@ -1,3 +1,5 @@
+import type { ImgHTMLAttributes, ReactNode } from "react";
+
 // Extended image metadata for logos, icons, etc.
 export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   id: string; // required unique identifier

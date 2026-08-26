@@ -7,7 +7,7 @@ export const businessDocs = [
     title: "Client Documentation",
     description: "Documentation related to clients and projects",
     slug: "client-documentation",
-    path: "business/client-documentation",
+    href: "business/client-documentation",
     file: getFilePath(`${path}/client-documentation.md`),
     createdAt: "04/08/2026",
     updatedAt: "04/08/2026",
