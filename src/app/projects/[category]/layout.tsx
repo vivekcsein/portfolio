@@ -1,3 +1,5 @@
+import "@/styles/ui/content-timeline.css";
+
 interface ProjectsCategoryLayoutPageProps {
   children: React.ReactNode;
 }

@@ -68,9 +68,9 @@ export const mainNav: NavTab[] = [
   },
 
   {
-    id: "blog",
-    title: "Blogs",
-    href: appConfig.routes.blogs,
+    id: "docs",
+    title: "Docs",
+    href: appConfig.routes.docs,
   },
 
   {

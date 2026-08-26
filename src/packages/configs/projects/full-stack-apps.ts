@@ -28,7 +28,7 @@ const fullStackApps = [
       "gsap",
       "vercel",
     ],
-    href: `sparkverse.in`,
+    href: "https://sparkverse.in/",
   },
 ] satisfies Project[];
 

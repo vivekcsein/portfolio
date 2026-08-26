@@ -1,11 +1,8 @@
+// components/ui/button.tsx
 import { cva, type VariantProps } from "class-variance-authority";
 import type { LucideIcon } from "lucide-react";
-import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  type ReactNode,
-} from "react";
+import { Loader2 } from "lucide-react";
+import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react";
 
 import { cn } from "@/packages/utils/cn";
 
@@ -13,12 +10,13 @@ import { cn } from "@/packages/utils/cn";
    Variants
    ========================================================================== */
 
-const linkVariants = cva(
+const buttonVariants = cva(
   [
     "group relative inline-flex items-center justify-center",
     "gap-2 whitespace-nowrap",
     "font-sans text-sm font-medium leading-tight",
     "outline-none select-none",
+    "cursor-pointer disabled:cursor-not-allowed",
     "transition-all duration-300 ease-out",
     "will-change-transform",
 
@@ -27,55 +25,19 @@ const linkVariants = cva(
     "focus-visible:ring-offset-2",
     "focus-visible:ring-offset-background",
 
+    "disabled:pointer-events-none disabled:opacity-50",
+
     "[&_svg]:pointer-events-none",
     "[&_svg]:shrink-0",
     "[&_svg]:size-4",
     "[&_svg]:transition-transform",
     "[&_svg]:duration-300",
-
-    "aria-disabled:pointer-events-none",
-    "aria-disabled:opacity-50",
   ],
   {
     variants: {
       variant: {
-        // Plain content link, no underline
-        default: ["text-foreground", "hover:text-primary"],
-
-        // Underlined text link — direction controlled via `direction` prop
+        // Primary gradient button
         primary: [
-          "text-primary",
-          "after:absolute after:-bottom-0.5 after:h-0.5 after:w-0",
-          "after:bg-current after:transition-all after:duration-300 after:ease-out",
-          "hover:text-primary/80",
-        ],
-
-        // Muted content link
-        muted: [
-          "text-muted-foreground",
-          "underline-offset-4",
-          "hover:text-foreground hover:underline",
-        ],
-
-        // Flat single-color button link (background only, no gradient)
-        secondary: [
-          "h-10 px-4 rounded-lg",
-          "border border-transparent",
-          "bg-primary text-primary-foreground",
-          "shadow-sm",
-
-          "hover:-translate-y-0.5",
-          "hover:bg-primary/90",
-          "hover:shadow-[0_8px_22px_rgba(124,58,237,0.25)]",
-
-          "active:translate-y-0",
-          "active:scale-[0.97]",
-          "active:bg-primary/95",
-        ],
-
-        // Primary gradient button-style link
-        button: [
-          "h-10 px-4 rounded-lg",
           "border border-transparent",
           "text-primary-foreground",
 
@@ -93,24 +55,22 @@ const linkVariants = cva(
           "active:shadow-[0_3px_10px_rgba(124,58,237,0.25)]",
         ],
 
-        "button-secondary": [
-          "h-10 px-4 rounded-lg",
-          "border border-border",
-          "bg-background text-foreground shadow-sm",
+        // Flat single-color button
+        secondary: [
+          "border border-transparent",
+          "bg-primary text-primary-foreground",
+          "shadow-sm",
 
           "hover:-translate-y-0.5",
-          "hover:border-primary/40",
-          "hover:bg-primary/5",
-          "hover:text-primary",
-          "hover:shadow-[0_8px_22px_rgba(124,58,237,0.12)]",
+          "hover:bg-primary/90",
+          "hover:shadow-[0_8px_22px_rgba(124,58,237,0.25)]",
 
           "active:translate-y-0",
           "active:scale-[0.97]",
-          "active:bg-primary/10",
+          "active:bg-primary/95",
         ],
 
         outline: [
-          "h-10 px-4 rounded-lg",
           "border border-border",
           "bg-transparent text-foreground",
 
@@ -126,9 +86,8 @@ const linkVariants = cva(
         ],
 
         ghost: [
-          "h-10 px-4 rounded-lg",
           "border border-transparent",
-          "text-foreground",
+          "bg-transparent text-foreground",
 
           "hover:-translate-y-0.5",
           "hover:bg-accent",
@@ -141,7 +100,6 @@ const linkVariants = cva(
         ],
 
         soft: [
-          "h-10 px-4 rounded-lg",
           "border border-primary/10",
           "bg-primary/10 text-primary",
 
@@ -156,7 +114,6 @@ const linkVariants = cva(
         ],
 
         destructive: [
-          "h-10 px-4 rounded-lg",
           "border border-transparent",
           "text-white",
 
@@ -172,9 +129,18 @@ const linkVariants = cva(
           "active:translate-y-0",
           "active:scale-[0.97]",
         ],
+
+        // Text link, underline animates in from a direction
+        link: [
+          "h-auto p-0",
+          "text-primary",
+          "after:absolute after:-bottom-0.5 after:h-0.5 after:w-0",
+          "after:bg-current after:transition-all after:duration-300 after:ease-out",
+          "hover:text-primary/80",
+          "shadow-none",
+        ],
       },
 
-      // Underline direction — only meaningful when variant="primary"
       direction: {
         left: ["after:left-0", "hover:after:w-full"],
         right: ["after:right-0", "hover:after:w-full"],
@@ -182,23 +148,19 @@ const linkVariants = cva(
       },
 
       size: {
-        sm: "h-8 px-3 text-xs",
-        default: "h-10 px-4",
-        lg: "h-11 px-5",
-        xl: "h-12 px-6 text-base",
+        sm: "h-8 px-3 text-xs rounded-md",
+        default: "h-10 px-4 rounded-lg",
+        lg: "h-11 px-5 rounded-lg",
+        xl: "h-12 px-6 text-base rounded-lg",
+        icon: "size-10 rounded-lg p-0",
       },
     },
 
     compoundVariants: [
-      // Only wire up the direction/after: styles when variant is primary.
-      // For every other variant, strip the after: pseudo-element entirely.
       {
         variant: [
-          "default",
-          "muted",
+          "primary",
           "secondary",
-          "button",
-          "button-secondary",
           "outline",
           "ghost",
           "soft",
@@ -206,19 +168,22 @@ const linkVariants = cva(
         ],
         className: "after:hidden",
       },
+      {
+        variant: "link",
+        className: "h-auto w-auto rounded-none px-0 py-0",
+      },
     ],
 
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   },
 );
 
 const shineVariants = new Set([
-  "button",
+  "primary",
   "secondary",
-  "button-secondary",
   "outline",
   "ghost",
   "soft",
@@ -229,43 +194,45 @@ const shineVariants = new Set([
    Component
    ========================================================================== */
 
-export interface AppLinkProps
-  extends Omit<ComponentPropsWithoutRef<"a">, keyof NextLinkProps | "color">,
-    NextLinkProps,
-    VariantProps<typeof linkVariants> {
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
+    VariantProps<typeof buttonVariants> {
   icon?: LucideIcon;
   iconPosition?: "left" | "right";
+  isLoading?: boolean;
   children?: ReactNode;
 }
 
-const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
-      variant = "default",
+      variant = "primary",
       direction = "center",
       size,
       icon: Icon,
       iconPosition = "right",
+      isLoading = false,
+      disabled,
       children,
+      type = "button",
       ...props
     },
     ref,
   ) => {
-    const isUnderline = variant === "primary";
+    const isLink = variant === "link";
     const hasShine = variant ? shineVariants.has(variant) : false;
 
     return (
-      <NextLink
+      <button
         ref={ref}
+        type={type}
+        disabled={disabled || isLoading}
         className={cn(
-          linkVariants({
+          buttonVariants({
             variant,
-            size:
-              variant === "default" || variant === "muted" || isUnderline
-                ? undefined
-                : size,
-            direction: isUnderline ? direction : undefined,
+            size: isLink ? undefined : size,
+            direction: isLink ? direction : undefined,
           }),
           className,
         )}
@@ -294,17 +261,23 @@ const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(
         )}
 
         <span className="relative z-10 inline-flex items-center justify-center gap-2">
-          {Icon && iconPosition === "left" && <Icon aria-hidden="true" />}
-          <span>{children}</span>
-          {Icon && iconPosition === "right" && (
+          {isLoading ? (
+            <Loader2 aria-hidden="true" className="animate-spin" />
+          ) : (
+            Icon && iconPosition === "left" && <Icon aria-hidden="true" />
+          )}
+
+          {children && <span>{children}</span>}
+
+          {!isLoading && Icon && iconPosition === "right" && (
             <Icon aria-hidden="true" className="group-hover:translate-x-0.5" />
           )}
         </span>
-      </NextLink>
+      </button>
     );
   },
 );
 
-AppLink.displayName = "AppLink";
+Button.displayName = "Button";
 
-export { AppLink, linkVariants };
+export { Button, buttonVariants };

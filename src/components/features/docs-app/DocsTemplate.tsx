@@ -19,9 +19,9 @@ const DocsTemplate = async ({ slug }: DocsTemplateProps) => {
   const markdown = getDocContent(doc);
 
   return (
-    <article className="docs-page">
-      <header className="docs-page-header">
-        <Link href={`/${docsConfig.path}`} className="docs-back-link">
+    <article className="hub-simple-page">
+      <header className="hub-simple-header">
+        <Link href={`/${docsConfig.path}`} className="hub-back-link">
           ← Back to Docs
         </Link>
 
@@ -30,11 +30,11 @@ const DocsTemplate = async ({ slug }: DocsTemplateProps) => {
         <h1>{doc.title}</h1>
 
         {doc.description && (
-          <p className="docs-page-description">{doc.description}</p>
+          <p className="hub-simple-description">{doc.description}</p>
         )}
       </header>
 
-      <div className="docs-page-content">
+      <div className="hub-simple-content">
         <Markdown content={markdown} />
       </div>
     </article>

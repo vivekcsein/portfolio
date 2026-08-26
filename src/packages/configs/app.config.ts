@@ -21,7 +21,7 @@ const appConfig = {
     title: envPublicConfig.SITE_TITLE,
     logo: envPublicConfig.LOGO_URL,
     ogImage: envPublicConfig.OG_IMAGE_URL,
-    active: envPublicConfig.ACTIVE_THEME,
+    activeTheme: envPublicConfig.ACTIVE_THEME,
   },
 
   social: {
@@ -60,7 +60,7 @@ const appConfig = {
     xxl: 1536,
   },
 
-  motion_duration: {
+  motionDuration: {
     instant: 100,
     fast: 150,
     base: 250,

@@ -1,3 +1,6 @@
+/** Category slug — must match a `key` in projects.config.ts (`full-stack`, `web`, `backend`, `3d-ar`, `experiments`, `tools`). */
+export type ProjectType = string;
+
 export interface ProjectCategory {
   key: ProjectType;
   title: string;

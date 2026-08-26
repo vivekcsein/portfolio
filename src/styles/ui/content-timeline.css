@@ -1,0 +1,74 @@
+.timeline-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 0;
+}
+
+.timeline-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent, #7c6cf6),
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-row {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.timeline-row-left {
+  justify-content: flex-start;
+}
+
+.timeline-row-right {
+  justify-content: flex-end;
+}
+
+.timeline-card {
+  width: 46%;
+  visibility: hidden;
+  /* GSAP flips this via autoAlpha */
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 2.5rem;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent, #7c6cf6);
+  box-shadow: 0 0 0 4px rgba(124, 108, 246, 0.15);
+  transform: translateX(-50%) scale(0);
+}
+
+@media (max-width: 768px) {
+  .timeline-spine {
+    left: 20px;
+  }
+
+  .timeline-row-left,
+  .timeline-row-right {
+    justify-content: flex-start;
+    padding-left: 48px;
+  }
+
+  .timeline-card {
+    width: 100%;
+  }
+
+  .timeline-dot {
+    left: 20px;
+  }
+}

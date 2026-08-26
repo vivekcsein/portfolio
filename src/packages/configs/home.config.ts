@@ -1,4 +1,4 @@
-import { envPublicConfig } from "../env/public.env";
+import appConfig from "./app.config";
 import projectsConfig from "./projects.config";
 
 export const homeConfig = {
@@ -15,22 +15,22 @@ export const homeConfig = {
     social: [
       {
         label: "GitHub",
-        href: envPublicConfig.GITHUB,
+        href: appConfig.social.github,
         icon: "github",
       },
       {
         label: "LinkedIn",
-        href: envPublicConfig.LINKEDIN,
+        href: appConfig.social.linkedin,
         icon: "linkedin",
       },
-      { label: "Twitter", href: envPublicConfig.TWITTER, icon: "twitter" },
+      { label: "Twitter", href: appConfig.social.twitter, icon: "twitter" },
       {
         label: "Email",
-        href: `mailto:${envPublicConfig.AUTHOR_EMAIL}`,
+        href: `mailto:${appConfig.author.email}`,
         icon: "mail",
       },
     ],
-    handle: envPublicConfig.AUTHOR_NAME,
+    handle: appConfig.author.name,
     floatingIcons: [
       "react",
       "typescript",
@@ -54,9 +54,9 @@ export const homeConfig = {
         icon: "check",
       },
       { label: "Location", value: "India", icon: "pin" },
-      { label: "Email", value: envPublicConfig.AUTHOR_EMAIL, icon: "mail" },
+      { label: "Email", value: appConfig.author.email, icon: "mail" },
       { label: "Focus", value: "Full Stack Development", icon: "target" },
-      { label: "Handle", value: envPublicConfig.AUTHOR_NAME, icon: "at" },
+      { label: "Handle", value: appConfig.author.name, icon: "at" },
     ],
     cta: { label: "More About Me", href: "/docs" },
   },

@@ -1,7 +1,10 @@
+import type { Project } from "@/types/projects";
 import arApps from "./projects/ar-apps";
 import backendApps from "./projects/backend-apps";
 import fullStackApps from "./projects/full-stack-apps";
-import otherProject from "./projects/other-project";
+import mobileApps from "./projects/mobile-apps";
+import otherProjects from "./projects/other-project";
+import reactApps from "./projects/react-apps";
 import webApps from "./projects/web-apps";
 
 const projectsConfig = {
@@ -25,7 +28,7 @@ const projectsConfig = {
 
       cta: {
         label: "View All full-stack projects",
-        href: "/full-stack",
+        href: "/projects/full-stack",
       },
 
       description:
@@ -67,7 +70,7 @@ const projectsConfig = {
       eyebrow: "Frontend Engineering",
       cta: {
         label: "View All web projects",
-        href: "/web",
+        href: "/projects/web",
       },
 
       description:
@@ -103,7 +106,7 @@ const projectsConfig = {
       eyebrow: "Systems Engineering",
       cta: {
         label: "View All backend projects",
-        href: "/backend",
+        href: "/projects/backend",
       },
 
       description:
@@ -145,7 +148,7 @@ const projectsConfig = {
       eyebrow: "Creative Engineering",
       cta: {
         label: "View All 3D & AR projects",
-        href: "/3d-ar",
+        href: "/projects/3d-ar",
       },
 
       description:
@@ -180,7 +183,7 @@ const projectsConfig = {
       eyebrow: "Exploration",
       cta: {
         label: "View All experiments projects",
-        href: "/experiments",
+        href: "/projects/experiments",
       },
 
       description:
@@ -197,7 +200,14 @@ const projectsConfig = {
         "Proof of concepts",
       ],
 
-      stack: ["TypeScript", "React", "Next.js", "GSAP", "Three.js"],
+      stack: [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "React Native",
+        "GSAP",
+        "Three.js",
+      ],
 
       icon: "flask",
 
@@ -206,7 +216,7 @@ const projectsConfig = {
         { label: "Style", value: "Rapid Prototyping" },
       ],
 
-      projectList: otherProject,
+      projectList: [...reactApps, ...mobileApps, ...otherProjects] as Project[],
     },
   ],
 } as const;

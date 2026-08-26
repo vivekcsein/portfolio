@@ -3,7 +3,7 @@ interface DevLayoutPageProps {
 }
 
 const DevLayoutPage = ({ children }: DevLayoutPageProps) => {
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 export default DevLayoutPage;
