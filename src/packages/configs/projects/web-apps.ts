@@ -36,6 +36,27 @@ const webApps = [
       "performance",
     ],
   },
+  {
+    key: "rastaa-web-page",
+    title: "Rastaa - Your Travel Guide",
+    role: "Web Developer",
+    description:
+      "A web page that helps users plan their trips by providing them with information about the best places to visit, restaurants, and activities.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "React"],
+    href: "https://frenzzofficial.github.io/rastaa/",
+    createdAt: "16/08/2026",
+    updatedAt: "17/08/2026",
+    client: "self",
+    keywords: [
+      "nextjs",
+      "typescript",
+      "tailwindcss",
+      "gsap",
+      "react",
+      "javascript",
+      "animation",
+    ],
+  },
 ] satisfies Project[];
 
 export default webApps;

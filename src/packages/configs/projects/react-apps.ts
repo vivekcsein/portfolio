@@ -3,6 +3,27 @@ import appConfig from "../app.config";
 
 const reactApps = [
   {
+    key: "learn-advanced-react",
+    title: "Learn Advanced React",
+    role: "React Developer",
+    description:
+      "A React course designed to help you learn the advanced features of React, including hooks, context, and concurrent mode.",
+    tags: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+    href: "https://learn-advance-react.vercel.app/",
+    createdAt: "23/04/2026",
+    updatedAt: "03/07/2026",
+    client: "self",
+    keywords: [
+      "react",
+      "typescript",
+      "nextjs",
+      "tailwindcss",
+      "hooks",
+      "context",
+      "concurrent mode",
+    ],
+  },
+  {
     key: "create-next-template",
     title: "Create Next Template",
     role: "React Developer",

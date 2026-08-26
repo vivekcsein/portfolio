@@ -4,11 +4,11 @@ import NavigationProvider, {
   useNavigationActions,
   useNavigationState,
 } from "@/components/providers/NavigationProvider";
-// import NavigationLogo from "@/components/ui/images/NavigationLogo";
 import NavbarDesktop from "../features/navigation/navbar/NavbarDesktop";
 import NavbarDesktopAction from "../features/navigation/navbar/NavbarDesktopAction";
 import NavbarMobile from "../features/navigation/navbar/NavbarMobile";
 import Drawer from "../ui/drawer/Drawer";
+import NavigationLogo from "../ui/images/NavigationLogo";
 
 type HeaderProps = {
   sticky?: boolean;
@@ -26,7 +26,7 @@ const HeaderContent = ({ sticky }: HeaderProps) => {
   return (
     <header className={`header ${sticky ? "header-sticky" : ""}`}>
       <div className="header-main">
-        {/* <NavigationLogo /> */}
+        <NavigationLogo />
         <NavbarDesktop />
         <NavbarDesktopAction />
       </div>

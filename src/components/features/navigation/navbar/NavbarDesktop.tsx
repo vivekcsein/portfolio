@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { memo } from "react";
 import {
   useNavigationActions,
   useNavigationState,
 } from "@/components/providers/NavigationProvider";
-import { Button } from "@/components/ui";
+import { Button, Link } from "@/components/ui";
 import { mainNav } from "@/packages/configs/navigation.config";
 import { useHoverDropdown } from "@/packages/hooks/useHoverDropdown";
 import { getAnimationStyle } from "@/packages/utils/animation";
@@ -38,6 +37,7 @@ const NavItem = memo(({ tab, activeId, onSelect }: NavItemProps) => {
     return (
       <li className="nav-item">
         <Link
+          variant={"default"}
           href={tab.href ?? "#"}
           className={`nav-btn ${isCurrentRoute ? "active" : ""}`}
         >
@@ -54,13 +54,12 @@ const NavItem = memo(({ tab, activeId, onSelect }: NavItemProps) => {
       onMouseLeave={onMouseLeave}
     >
       <Button
-        variant="ghost"
+        variant="link"
         className={`nav-btn ${isActive ? "active" : ""}`}
         aria-haspopup="true"
         aria-expanded={isActive}
       >
         {tab.title}
-        <span className="chevron-arrow" />
       </Button>
 
       {/* Content-Driven Dropdown Panel */}

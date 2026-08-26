@@ -49,6 +49,21 @@ const otherProjects = [
     client: "self",
     keywords: ["nextjs", "typescript", "tailwindcss", "dark mode", "theme"],
   },
+  {
+    key: "frnz-ui",
+    title: "frnz-ui",
+    role: "React UI Library",
+    description: "A React-UI library for creating front-end development easy",
+    tags: ["React", "TypeScript", "React-UI", "Library", "Rollup"],
+    href: "https://www.npmjs.com/package/frnz-ui",
+    createdAt: "13/00/2023",
+    updatedAt: "11/02/2024",
+    client: "self",
+    keywords: ["react", "typescript", "react-ui", "library", "rollup"],
+    screenshots: [
+      "https://raw.githubusercontent.com/vivekcsein/githost/main/images/frnz/fav_icon.png",
+    ],
+  },
 ] satisfies Project[];
 
 export default otherProjects;
