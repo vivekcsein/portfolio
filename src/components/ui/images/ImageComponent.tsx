@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
-import type { ImageProps } from "../../../types/app";
+import type { ImageProps } from "@/types/app";
 
 const ImageComponent = (props: ImageProps) => {
   const {

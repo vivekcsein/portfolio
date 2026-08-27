@@ -45,11 +45,11 @@ const Hero = () => {
 
           <h1 className="text-4xl leading-tight font-bold text-balance sm:text-5xl lg:text-6xl">
             {hero.heading[0]} {hero.heading[1]}{" "}
-            <span className="bg-linear-to-r from-primary to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-fuchsia-400 bg-clip-text text-transparent">
               {hero.highlights[0]}
             </span>{" "}
             {hero.heading[2]}{" "}
-            <span className="bg-linear-to-r from-primary to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-fuchsia-400 to-primary bg-clip-text text-transparent">
               {hero.highlights[1]}
             </span>
           </h1>

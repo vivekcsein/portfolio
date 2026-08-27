@@ -9,7 +9,7 @@ export const developmentDocs = [
     description:
       "Learn how to structure frontend and backend projects so your code stays clean, organized, and easy to maintain as the project grows.",
     slug: "folder-structure-guide",
-    href: "development/folder-structure-guide",
+    docPath: "development/folder-structure-guide",
     file: getFilePath(`${path}/developer/folder-structure-guide.md`),
     createdAt: "15/08/2026",
     updatedAt: "16/08/2026",
@@ -29,7 +29,7 @@ export const developmentDocs = [
     description:
       "Set up VS Code for a smoother development workflow and learn the most useful keyboard shortcuts every developer should know.",
     slug: "vs-code-setup-guide",
-    href: "development/vs-code-setup-guide",
+    docPath: "development/vs-code-setup-guide",
     file: getFilePath(`${path}/developer/vs-code-setup-guide.md`),
     createdAt: "05/08/2026",
     updatedAt: "06/08/2026",
@@ -50,7 +50,7 @@ export const developmentDocs = [
     description:
       "Understand how to protect client-side data in Next.js applications, including role-based access, permissions, and safer data-handling patterns.",
     slug: "secure-client-side-data",
-    href: "development/secure-client-side-data-handling",
+    docPath: "development/secure-client-side-data-handling",
     file: getFilePath(`${path}/frontend/secure-cs-data-handling-next.md`),
     createdAt: "23/08/2026",
     updatedAt: "24/08/2026",
@@ -72,7 +72,7 @@ export const developmentDocs = [
     description:
       "Learn how to load and use GLB 3D models in your frontend with reusable components, automatic sizing, positioning, and animations.",
     slug: "3d-models-setup-guide",
-    href: "development/3d-models-setup-guide",
+    docPath: "development/3d-models-setup-guide",
     file: getFilePath(`${path}/frontend/3d-models-setup-guide.md`),
     createdAt: "24/08/2026",
     updatedAt: "24/08/2026",

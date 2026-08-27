@@ -49,7 +49,7 @@ const StylishIcon = ({
           border
           border-primary/35
           bg-primary/[0.035]
-          shadow-[0_0_20px_hsl(var(--primary)/0.16)]
+          shadow-[0_0_20px_color-mix(in_oklch,var(--primary)_16%,transparent)]
         "
       />
 
@@ -72,7 +72,7 @@ const StylishIcon = ({
           absolute
           inset-[5px]
           rounded-full
-          bg-[radial-gradient(circle_at_35%_25%,hsl(var(--primary)/0.28),transparent_45%,hsl(var(--primary)/0.05)_100%)]
+          bg-[radial-gradient(circle_at_35%_25%,color-mix(in_oklch,var(--primary)_28%,transparent),transparent_45%,color-mix(in_oklch,var(--primary)_5%,transparent)_100%)]
         "
       />
 
@@ -102,7 +102,7 @@ const StylishIcon = ({
           items-center
           justify-center
           text-primary
-          drop-shadow-[0_0_8px_hsl(var(--primary)/0.55)]
+          drop-shadow-[0_0_8px_color-mix(in_oklch,var(--primary)_55%,transparent)]
         "
       >
         {children}

@@ -1,6 +1,6 @@
+import { Link } from "@/components/ui";
+import Icon from "@/components/ui/icon/Icon";
 import { homeConfig } from "@/packages/configs/home.config";
-import { Link } from "../ui";
-import Icon from "../ui/icon/Icon";
 
 const SocialPanel = () => {
   const hero = homeConfig.hero;

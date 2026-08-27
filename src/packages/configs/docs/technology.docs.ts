@@ -8,7 +8,7 @@ export const technologyDocs = [
     title: "Vercel Subdomain Deployment",
     description: "How to deploy a Next.js app to a Vercel subdomain",
     slug: "vercel-subdomain-deployment",
-    href: "technology/vercel-subdomain-deployment",
+    docPath: "technology/vercel-subdomain-deployment",
     file: getFilePath(
       `${path}/vercel/Vercel-subdomain-indexing-ads-monetization-guide.md`,
     ),
@@ -23,7 +23,7 @@ export const technologyDocs = [
     description:
       "Learn how to create 3D models in Blender using natural-language prompts.",
     slug: "blender-create-3d-models-python",
-    href: "technology/blender/create-3d-models-python",
+    docPath: "technology/blender/create-3d-models-python",
     file: getFilePath(`${path}/blender/create-3d-models-python.md`),
     createdAt: "24/08/2026",
     updatedAt: "24/08/2026",

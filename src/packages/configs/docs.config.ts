@@ -20,7 +20,10 @@ export type DocsItem = {
   title: string;
   description?: string;
   slug: string;
-  href: string;
+  /** Category/slug composite string — reference-only metadata, not a navigable route.
+   * The real in-site link is computed from `slug` — see normalizeDocsList() in
+   * packages/utils/content-normalize.ts. */
+  docPath: string;
   file: string;
   createdAt: string;
   updatedAt: string;

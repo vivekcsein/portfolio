@@ -14,11 +14,9 @@ const Metrics = () => {
       >
         {homeConfig.metrics.map((metric) => (
           <div key={metric.label} className="flex items-center gap-4">
-            <div className="flex size-11 shrink-0 items-center justify-center">
-              <StylishIcon className="shrink-0 size-3" size="sm">
-                <Icon name={"box"} className="size-7" />
-              </StylishIcon>
-            </div>
+            <StylishIcon size="sm">
+              <Icon name={metric.icon} className="size-5" />
+            </StylishIcon>
 
             <div>
               <p className="text-xl font-bold sm:text-2xl">{metric.value}</p>

@@ -1,6 +1,7 @@
 "use client";
 
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   type RefObject,
   useEffect,
@@ -11,6 +12,8 @@ import {
 } from "react";
 
 import type homeConfig from "@/packages/configs/home.config";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type TechStack = typeof homeConfig.techStack;
 type TechCategory = TechStack["categories"][number];
@@ -116,6 +119,7 @@ export const useTechStack = ({
   /*
    * Animate cards whenever the active category changes.
    */
+  // biome-ignore lint/correctness/useExhaustiveDependencies: activeCategory isn't read directly in the body, but it's what triggers filteredItems (and therefore the .tech-stack-card DOM this effect queries) to change — the dependency is intentional and necessary here.
   useEffect(() => {
     const container = containerRef.current;
 
@@ -140,7 +144,7 @@ export const useTechStack = ({
         overwrite: true,
       },
     );
-  }, []);
+  }, [activeCategory]);
 
   return {
     activeCategory,
