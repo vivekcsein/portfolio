@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-
+import SocialPanel from "@/components/layouts/SocialPanel";
+import { Link } from "@/components/ui";
 import Icon from "@/components/ui/icon/Icon";
 import homeConfig from "@/packages/configs/home.config";
 import { useScrollReveal } from "@/packages/hooks/useScrollReveal";
@@ -44,11 +45,11 @@ const Hero = () => {
 
           <h1 className="text-4xl leading-tight font-bold text-balance sm:text-5xl lg:text-6xl">
             {hero.heading[0]} {hero.heading[1]}{" "}
-            <span className="bg-linear-to-r from-primary to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-primary bg-clip-text text-transparent">
               {hero.highlights[0]}
             </span>{" "}
             {hero.heading[2]}{" "}
-            <span className="bg-linear-to-r from-fuchsia-400 to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-primary bg-clip-text text-transparent">
               {hero.highlights[1]}
             </span>
           </h1>
@@ -58,23 +59,17 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={hero.primaryCta.href}
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-[1.03]"
-            >
+            <Link href={hero.primaryCta.href} variant={"button"}>
               {hero.primaryCta.label}
               <Icon
                 name="rocket"
                 className="size-4 transition-transform group-hover:translate-x-1"
               />
-            </a>
+            </Link>
 
-            <a
-              href={hero.secondaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium transition-colors hover:bg-muted"
-            >
+            <Link variant={"button-secondary"} href={hero.secondaryCta.href}>
               {hero.secondaryCta.label}
-            </a>
+            </Link>
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3">
@@ -82,20 +77,7 @@ const Hero = () => {
               Connect with me
             </span>
 
-            <div className="flex items-center gap-3">
-              {hero.social.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  aria-label={item.label}
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                >
-                  <Icon name={item.icon} className="size-4" />
-                </a>
-              ))}
-            </div>
+            <SocialPanel />
 
             <span className="text-sm text-muted-foreground">{hero.handle}</span>
           </div>

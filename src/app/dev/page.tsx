@@ -1,5 +1,6 @@
-import { Button, Link } from "@/components/ui";
+import { Button, Icon, Link } from "@/components/ui";
 import { AlignmentContainer } from "@/components/ui/containers/AlignmentContainer";
+import StylishIcon from "@/components/ui/icon/StylishIcon";
 
 const DevPage = () => {
   return (
@@ -11,6 +12,12 @@ const DevPage = () => {
         click me here{" "}
       </Link>
       <Button variant={"primary"}>Click me here</Button>
+
+      <div className="flex size-11 shrink-0 items-center justify-center">
+        <StylishIcon>
+          <Icon name={"box"} className="size-5" />
+        </StylishIcon>
+      </div>
     </AlignmentContainer>
   );
 };

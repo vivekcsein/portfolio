@@ -26,8 +26,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   border-color: var(--border);
 }
 
@@ -39,6 +37,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 
 body {

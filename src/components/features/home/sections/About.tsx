@@ -1,9 +1,9 @@
 "use client";
 
-import Icon from "@/components/ui/icon/Icon";
 import ModelSlot from "@/components/ui/models/ModelSlot";
 import Reveal from "@/components/ui/reveal/Reveal";
 import homeConfig from "@/packages/configs/home.config";
+import Experience from "./Experience";
 
 const About = () => {
   const { about } = homeConfig;
@@ -33,30 +33,7 @@ const About = () => {
 
           <p className="text-muted-foreground">{about.description}</p>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {about.stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex items-start gap-3 rounded-2xl border border-border bg-card/50 p-4"
-              >
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Icon name={stat.icon} className="size-4" />
-                </div>
-
-                <div className="min-w-0">
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
-                  <p className="truncate text-sm font-medium">{stat.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <a
-            href={about.cta.href}
-            className="w-fit rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:bg-muted"
-          >
-            {about.cta.label} →
-          </a>
+          <Experience />
         </Reveal>
       </div>
     </section>

@@ -1,4 +1,5 @@
 export { Button } from "./button/Button";
+export { AlignmentContainer as Container } from "./containers/AlignmentContainer";
 export { default as BrandIcons } from "./icon/BrandIcons";
 export { default as Icon } from "./icon/Icon";
 export { default as KeywordsButtons } from "./keywords/KeywordsCopy";

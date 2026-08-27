@@ -1,6 +1,7 @@
 "use client";
 
 import Icon from "@/components/ui/icon/Icon";
+import StylishIcon from "@/components/ui/icon/StylishIcon";
 import Reveal from "@/components/ui/reveal/Reveal";
 import homeConfig from "@/packages/configs/home.config";
 
@@ -12,9 +13,11 @@ const Metrics = () => {
         className="mx-auto grid max-w-6xl grid-cols-2 gap-6 rounded-3xl border border-border bg-card/50 px-6 py-8 sm:grid-cols-4"
       >
         {homeConfig.metrics.map((metric) => (
-          <div key={metric.label} className="flex items-center gap-3">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <Icon name={metric.icon} className="size-5" />
+          <div key={metric.label} className="flex items-center gap-4">
+            <div className="flex size-11 shrink-0 items-center justify-center">
+              <StylishIcon className="shrink-0 size-3" size="sm">
+                <Icon name={"box"} className="size-7" />
+              </StylishIcon>
             </div>
 
             <div>

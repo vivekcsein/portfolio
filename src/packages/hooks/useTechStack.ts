@@ -1,0 +1,151 @@
+"use client";
+
+import gsap from "gsap";
+import {
+  type RefObject,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+
+import type homeConfig from "@/packages/configs/home.config";
+
+type TechStack = typeof homeConfig.techStack;
+type TechCategory = TechStack["categories"][number];
+type TechItem = TechStack["items"][number];
+
+interface UseTechStackOptions {
+  techStack: TechStack;
+}
+
+interface UseTechStackReturn {
+  activeCategory: TechCategory;
+  filteredItems: TechItem[];
+  containerRef: RefObject<HTMLDivElement | null>;
+  setActiveCategory: (category: TechCategory) => void;
+}
+
+export const useTechStack = ({
+  techStack,
+}: UseTechStackOptions): UseTechStackReturn => {
+  const [activeCategory, setActiveCategory] = useState<TechCategory>("All");
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const filteredItems = useMemo(() => {
+    if (activeCategory === "All") {
+      return [...techStack.items];
+    }
+
+    return techStack.items.filter((item) => item.category === activeCategory);
+  }, [activeCategory, techStack.items]);
+
+  /*
+   * Initial section reveal.
+   */
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const ctx = gsap.context(() => {
+      const heading = container.querySelector(".tech-stack-heading");
+
+      const filters = container.querySelector(".tech-stack-filters");
+
+      const cards = container.querySelectorAll(".tech-stack-card");
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top 88%",
+          once: true,
+        },
+      });
+
+      timeline
+        .fromTo(
+          heading,
+          {
+            opacity: 0,
+            y: 12,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power2.out",
+          },
+        )
+        .fromTo(
+          filters,
+          {
+            opacity: 0,
+            y: 10,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          },
+          "-=0.25",
+        )
+        .fromTo(
+          cards,
+          {
+            opacity: 0,
+            y: 10,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.035,
+            ease: "power2.out",
+          },
+          "-=0.2",
+        );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
+
+  /*
+   * Animate cards whenever the active category changes.
+   */
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const cards = container.querySelectorAll(".tech-stack-card");
+
+    gsap.fromTo(
+      cards,
+      {
+        opacity: 0,
+        y: 8,
+        scale: 0.97,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.3,
+        stagger: 0.035,
+        ease: "power2.out",
+        overwrite: true,
+      },
+    );
+  }, []);
+
+  return {
+    activeCategory,
+    filteredItems,
+    containerRef,
+    setActiveCategory,
+  };
+};

@@ -25,9 +25,6 @@ export default function KeywordsButtons({ keywords }: KeywordsButtonsProps) {
               onClick={() => copy(keyword)}
               title={`Copy "${keyword}"`}
               aria-label={`Copy keyword ${keyword}`}
-              style={{
-                padding: "4px 8px",
-              }}
               className={`
                   cursor-pointer
                   inline-flex

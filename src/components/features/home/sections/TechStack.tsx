@@ -1,74 +1,181 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Image from "next/image";
 
-import Reveal from "@/components/ui/reveal/Reveal";
-import TiltCard from "@/components/ui/tilt-card/TiltCard";
+import { Button } from "@/components/ui";
 import homeConfig from "@/packages/configs/home.config";
+import { useTechStack } from "@/packages/hooks/useTechStack";
 
 const TechStack = () => {
   const { techStack } = homeConfig;
-  const [active, setActive] =
-    useState<(typeof techStack.categories)[number]>("All");
 
-  const items = useMemo(
-    () =>
-      active === "All"
-        ? techStack.items
-        : techStack.items.filter((item) => item.category === active),
-    [active],
-  );
+  const { activeCategory, filteredItems, containerRef, setActiveCategory } =
+    useTechStack({
+      techStack,
+    });
 
   return (
-    <section className="px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <Reveal>
-            <span className="text-xs font-medium tracking-wide text-primary uppercase">
-              {techStack.eyebrow}
-            </span>
-            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
+    <section
+      ref={containerRef}
+      className="w-full overflow-hidden px-4 py-16 sm:px-6 md:py-20"
+    >
+      <div className="mx-auto w-full max-w-7xl">
+        {/* Header */}
+        <div className="mb-5 flex flex-col gap-4">
+          {/* Heading */}
+          <div className="tech-stack-heading">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
               {techStack.heading}
-            </h2>
-          </Reveal>
+            </h3>
+          </div>
 
-          <div className="flex flex-wrap gap-2">
-            {techStack.categories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setActive(category)}
-                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                  active === category
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border text-muted-foreground hover:bg-muted"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          {/* Category filters */}
+          <div
+            className="
+              tech-stack-filters
+              -mx-1
+              flex
+              w-full
+              gap-2
+              overflow-x-auto
+              px-1
+              pb-1
+              scrollbar-none
+              [-ms-overflow-style:none]
+              [&::-webkit-scrollbar]:hidden
+            "
+          >
+            {techStack.categories.map((category) => {
+              const isActive = activeCategory === category;
+
+              return (
+                <Button
+                  key={category}
+                  type="button"
+                  variant="outline"
+                  onClick={() => setActiveCategory(category)}
+                  aria-pressed={isActive}
+                  className={`
+                    shrink-0
+                    rounded-lg
+                    px-3.5
+                    py-2
+                    text-xs
+                    font-medium
+                    transition-all
+                    duration-200
+                    ${
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground shadow-sm shadow-primary/20 hover:bg-primary/90"
+                        : "border-border/70 bg-card/40 text-muted-foreground hover:border-border hover:bg-muted/60 hover:text-foreground"
+                    }
+                  `}
+                >
+                  {category}
+                </Button>
+              );
+            })}
           </div>
         </div>
 
-        <Reveal
-          group
-          className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+        {/* Technology strip */}
+        <div
+          className="
+            -mx-4
+            overflow-x-auto
+            px-4
+            scrollbar-none
+            [-ms-overflow-style:none]
+            [&::-webkit-scrollbar]:hidden
+            sm:-mx-6
+            sm:px-6
+          "
         >
-          {items.map((item) => (
-            <TiltCard key={item.name} maxTilt={14} glare={false}>
-              <div className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-card/50 p-4 text-center transition-colors hover:border-primary/40">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-sm font-semibold text-primary">
-                  {item.name.slice(0, 2).toUpperCase()}
-                </div>
-                <span className="text-xs text-muted-foreground">
-                  {item.name}
-                </span>
-              </div>
-            </TiltCard>
-          ))}
-        </Reveal>
+          <div
+            className="
+              flex
+              w-max
+              min-w-full
+              gap-2
+              pb-1
+            "
+          >
+            {filteredItems.map((item) => (
+              <TechCard key={item.name} name={item.name} image={item.image} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
+  );
+};
+
+interface TechCardProps {
+  name: string;
+  image: string;
+}
+
+const TechCard = ({ name, image }: TechCardProps) => {
+  return (
+    <div
+      className="
+        tech-stack-card
+        group
+        flex
+        h-19
+        w-19
+        shrink-0
+        flex-col
+        items-center
+        justify-center
+        gap-1.5
+        rounded-xl
+        border
+        border-border/70
+        bg-card/40
+        px-2
+        transition-colors
+        duration-200
+        hover:border-primary/30
+        hover:bg-card
+        sm:h-20
+        sm:w-20
+      "
+    >
+      <div className="relative flex size-8 items-center justify-center sm:size-9">
+        <Image
+          src={image}
+          alt={name}
+          width={36}
+          height={36}
+          className="
+            size-7
+            object-contain
+            opacity-90
+            transition-transform
+            duration-200
+            group-hover:scale-110
+            group-hover:opacity-100
+            sm:size-8
+          "
+        />
+      </div>
+
+      <span
+        className="
+          max-w-full
+          truncate
+          text-[10px]
+          font-medium
+          text-muted-foreground
+          transition-colors
+          duration-200
+          group-hover:text-foreground
+        "
+      >
+        {name}
+      </span>
+    </div>
   );
 };
 
