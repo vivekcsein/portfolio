@@ -1,6 +1,6 @@
 import { type DocsItem, getFilePath } from "../docs.config";
 
-const path = "/src/docs/technology";
+const path = "/technology";
 export const technologyDocs = [
   // Add technology-specific documentation here.
   {

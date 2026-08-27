@@ -3,6 +3,7 @@ import { docsConfig } from "@/packages/configs/docs.config";
 
 export interface DocsPageProps {
   params: Promise<{
+    category: string;
     slug: string[];
   }>;
 }
@@ -12,17 +13,16 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return docsConfig.categories.flatMap((category) =>
     category.children.map((doc) => ({
-      slug: [category.key, doc.slug],
+      category: category.key,
+      slug: [doc.slug],
     })),
   );
 }
 
 const DocsTemplatePage = async ({ params }: DocsPageProps) => {
-  const { slug } = await params;
+  const { category, slug } = await params;
 
-  console.log(slug);
-
-  return <DocsTemplate slug={slug} />;
+  return <DocsTemplate slug={[category, ...slug]} />;
 };
 
 export default DocsTemplatePage;

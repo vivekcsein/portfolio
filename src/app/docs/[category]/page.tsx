@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Link } from "@/components/ui";
 import ContentTimeline from "@/components/ui/timeline/ContentTimeline";
 import { docsConfig } from "@/packages/configs/docs.config";
-import { normalizeContentList } from "@/packages/utils/content-normlize";
+import { normalizeDocsList } from "@/packages/utils/content-normlize";
 
 interface DocsCategoryPageProps {
   params: Promise<{
@@ -25,7 +25,7 @@ const DocsCategoryPage = async ({ params }: DocsCategoryPageProps) => {
     (item) => item.key === categoryKey,
   );
 
-  const contentList = normalizeContentList(category?.children);
+  const contentList = normalizeDocsList(categoryKey, category?.children);
 
   if (!category) {
     notFound();

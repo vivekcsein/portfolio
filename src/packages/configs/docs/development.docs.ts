@@ -1,6 +1,6 @@
 import { type DocsItem, getFilePath } from "../docs.config";
 
-const path = "/src/docs/dev";
+const path = "/dev";
 
 export const developmentDocs = [
   {

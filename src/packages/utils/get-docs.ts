@@ -21,5 +21,12 @@ export const getDocBySlug = (slug: string[]): DocEntry | undefined => {
 };
 
 export const getDocContent = (doc: DocEntry): string => {
-  return fs.readFileSync(doc.file, "utf-8");
+  try {
+    return fs.readFileSync(doc.file, "utf-8");
+  } catch {
+    // Don't let one missing markdown file take down the whole build —
+    // surface it clearly on the page instead. See docs config: the
+    // referenced file for this entry doesn't exist on disk.
+    return `> **Content not available yet.**\n>\n> The markdown file for "${doc.title}" is missing from the repository. Expected at: \`${doc.file}\`.`;
+  }
 };

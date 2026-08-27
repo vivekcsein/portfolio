@@ -1,6 +1,7 @@
 import { type DocsItem, getFilePath } from "../docs.config";
 
-const path = "/src/docs/business";
+const path = "/business";
+
 export const businessDocs = [
   {
     key: "business-1",
