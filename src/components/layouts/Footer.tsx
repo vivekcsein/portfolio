@@ -10,7 +10,11 @@ const Footer = () => {
       <div className="site-footer-inner">
         <div className="site-footer-top">
           <div className="site-footer-brand">
-            <NavigationLogo width={128} height={128} />
+            <NavigationLogo
+              width={128}
+              height={128}
+              src={appConfig.site.logo}
+            />
             <p className="site-footer-tagline">{appConfig.app.description}</p>
             {/* <SocialLinks /> */}
           </div>

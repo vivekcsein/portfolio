@@ -4,6 +4,7 @@ import NavigationProvider, {
   useNavigationActions,
   useNavigationState,
 } from "@/components/providers/NavigationProvider";
+import appConfig from "@/packages/configs/app.config";
 import NavbarDesktop from "../features/navigation/navbar/NavbarDesktop";
 import NavbarDesktopAction from "../features/navigation/navbar/NavbarDesktopAction";
 import NavbarMobile from "../features/navigation/navbar/NavbarMobile";
@@ -26,7 +27,7 @@ const HeaderContent = ({ sticky }: HeaderProps) => {
   return (
     <header className={`header ${sticky ? "header-sticky" : ""}`}>
       <div className="header-main">
-        <NavigationLogo />
+        <NavigationLogo src={appConfig.site.logo} />
         <NavbarDesktop />
         <NavbarDesktopAction />
       </div>

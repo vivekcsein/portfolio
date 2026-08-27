@@ -24,6 +24,11 @@ const appConfig = {
     activeTheme: envPublicConfig.ACTIVE_THEME,
   },
 
+  git: {
+    imageUrl:
+      "https://raw.githubusercontent.com/vivekcsein/portfolio/refs/heads/main/public/",
+  },
+
   social: {
     twitter: envPublicConfig.TWITTER,
     linkedin: envPublicConfig.LINKEDIN,

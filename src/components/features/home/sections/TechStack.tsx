@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
-
 import { Button } from "@/components/ui";
+import ImageComponent from "@/components/ui/images/ImageComponent";
 import homeConfig from "@/packages/configs/home.config";
 import { useTechStack } from "@/packages/hooks/useTechStack";
 
@@ -143,7 +142,8 @@ const TechCard = ({ name, image }: TechCardProps) => {
       "
     >
       <div className="relative flex size-8 items-center justify-center sm:size-9">
-        <Image
+        <ImageComponent
+          id={`tech-stack-card-${name}`}
           src={image}
           alt={name}
           width={36}

@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
+import { useImageFromGit } from "@/packages/hooks/useImageFromGit";
 import type { ImageProps } from "@/types/app";
 
 const ImageComponent = (props: ImageProps) => {
+  const gitSrc = useImageFromGit(props.src);
   const {
     id,
     src,
@@ -20,7 +22,7 @@ const ImageComponent = (props: ImageProps) => {
   const image = (
     <Image
       id={id}
-      src={src}
+      src={gitSrc}
       alt={alt}
       width={width}
       height={height}
