@@ -1,6 +1,7 @@
 import {
   businessDocs,
   developmentDocs,
+  interviewDocs,
   othersDocs,
   personalDocs,
   technologyDocs,
@@ -13,6 +14,7 @@ export type DocsCategory =
   | "development"
   | "technology"
   | "personal"
+  | "interview"
   | "others";
 
 export type DocsItem = {
@@ -76,6 +78,12 @@ export const docsConfig = {
       description:
         "Practical guides for personal organization, productivity, learning, workflows, planning, digital tools, and everyday improvement.",
       children: personalDocs,
+    },
+    {
+      key: "interview",
+      title: "Interview Questions",
+      description: "Top 1% questions asked by the community on various topics.",
+      children: interviewDocs,
     },
 
     {

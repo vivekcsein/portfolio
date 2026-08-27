@@ -75,28 +75,28 @@ centers it. This means:
 **Picking a `size` value** — rule of thumb for this project's camera
 setup (`fov: 40`, camera ~5 units back):
 
-| Use case                          | Suggested `size` |
-| ---------------------------------- | ----------------- |
-| Small showcase tile (grid of 4)    | `1.4 – 1.8`        |
-| Section hero (like the desk scene) | `2.5 – 3.5`        |
-| Full-bleed/background centerpiece  | `4+`               |
+| Use case                           | Suggested `size` |
+| ---------------------------------- | ---------------- |
+| Small showcase tile (grid of 4)    | `1.4 – 1.8`      |
+| Section hero (like the desk scene) | `2.5 – 3.5`      |
+| Full-bleed/background centerpiece  | `4+`             |
 
 ## 4. Animation presets
 
 Set the `animation` field per model in the config:
 
-| Preset        | What it does                                                |
-| ------------- | ------------------------------------------------------------ |
-| `"none"`      | Static, no motion.                                            |
-| `"float"`     | Gentle up/down drift + slight rotation (drei's `<Float>`).    |
-| `"spin"`      | Continuous slow Y-axis rotation.                               |
-| `"float-spin"`| Float **and** spin together — default for showcase tiles.     |
-| `"entrance"`  | One-time GSAP "pop in" (scale 0 → 1, `back.out` ease) on mount.|
+| Preset         | What it does                                                    |
+| -------------- | --------------------------------------------------------------- |
+| `"none"`       | Static, no motion.                                              |
+| `"float"`      | Gentle up/down drift + slight rotation (drei's `<Float>`).      |
+| `"spin"`       | Continuous slow Y-axis rotation.                                |
+| `"float-spin"` | Float **and** spin together — default for showcase tiles.       |
+| `"entrance"`   | One-time GSAP "pop in" (scale 0 → 1, `back.out` ease) on mount. |
 
 If the GLB itself has a **baked-in animation clip** (something the
 designer keyframed in Blender — an idle loop, a door opening, etc.), set
 `clip: "ClipNameFromBlender"`. This plays independently of the
-`animation` preset — you can have `animation: "float"` *and* `clip:
+`animation` preset — you can have `animation: "float"` _and_ `clip:
 "Idle"` running at the same time.
 
 > Don't know the clip name? Load the model once with no `clip` set and
@@ -129,12 +129,12 @@ const ShowcaseCard = () => (
   tiles; only turn it on for a dedicated "explore this model" view.
 
 ```tsx
-<ClientModelViewer modelKey="hero-desk-setup" className="h-[480px]" interactive />
+<ClientModelViewer modelKey="hero-desk-setup" className="h-120" interactive />
 ```
 
 ## 6. Combining with scroll animation
 
-`ClientModelViewer` only handles the model's *own* motion (float/spin/
+`ClientModelViewer` only handles the model's _own_ motion (float/spin/
 entrance). To also have the whole viewer fade/slide in as the visitor
 scrolls to it, wrap it in the project's existing `<Reveal>` component
 (GSAP ScrollTrigger — see `src/components/ui/reveal/Reveal.tsx`):
@@ -165,10 +165,10 @@ import ClientModelViewer from "@/components/features/models/ClientModelViewer";
 
 ## Troubleshooting
 
-| Symptom                                   | Likely cause                                                                 |
-| ------------------------------------------ | ------------------------------------------------------------------------------ |
-| Model doesn't appear, no error              | Wrong `key` passed to `modelKey`, or `src` path doesn't match the file in `public/models/`. Check the browser console — `ModelViewer` warns on a missing config key. |
-| Model appears tiny or huge                  | `size` too small/large for this model's proportions — adjust the number, not the GLB. |
-| Model appears off-center                    | Something in the GLB has a large offset baked in — auto-centering handles the mesh bounding box, but double check the designer didn't leave a stray empty/light far from origin (it gets included in the bounding-box calc). |
-| `clip` doesn't play                         | Clip name typo — log `animations.map(a => a.name)` to confirm the exact string. |
-| Hydration/SSR error mentioning `WebGLRenderer`| You imported `ModelViewer` directly instead of `ClientModelViewer`.          |
+| Symptom                                        | Likely cause                                                                                                                                                                                                                 |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model doesn't appear, no error                 | Wrong `key` passed to `modelKey`, or `src` path doesn't match the file in `public/models/`. Check the browser console — `ModelViewer` warns on a missing config key.                                                         |
+| Model appears tiny or huge                     | `size` too small/large for this model's proportions — adjust the number, not the GLB.                                                                                                                                        |
+| Model appears off-center                       | Something in the GLB has a large offset baked in — auto-centering handles the mesh bounding box, but double check the designer didn't leave a stray empty/light far from origin (it gets included in the bounding-box calc). |
+| `clip` doesn't play                            | Clip name typo — log `animations.map(a => a.name)` to confirm the exact string.                                                                                                                                              |
+| Hydration/SSR error mentioning `WebGLRenderer` | You imported `ModelViewer` directly instead of `ClientModelViewer`.                                                                                                                                                          |

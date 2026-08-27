@@ -45,6 +45,52 @@ export const developmentDocs = [
   },
 
   {
+    key: "react-hooks-guide",
+    title: "React Hooks Guide",
+    description:
+      "Learn how to use React Hooks effectively in your Next.js applications.",
+    slug: "react-hooks-guide",
+    docPath: "development/react-hooks-guide",
+    file: getFilePath(`${path}/frontend/react-hooks-guide.md`),
+    createdAt: "24/08/2026",
+    updatedAt: "24/08/2026",
+    keywords: [
+      "development",
+      "frontend",
+      "react",
+      "hooks",
+      "nextjs",
+      "guide",
+      "tutorial",
+      "beginner",
+      "intermediate",
+      "advanced",
+    ],
+  },
+  {
+    key: "error-handling-guide",
+    title: "Error Handling Guide",
+    description: "Learn how to handle errors in your Next.js applications.",
+    slug: "dev-error-handling-guide",
+    docPath: "development/dev-error-handling-guide",
+    file: getFilePath(`${path}/developer/dev-error-guide.md`),
+    createdAt: "07/06/2026",
+    updatedAt: "08/06/2026",
+    keywords: [
+      "development",
+      "frontend",
+      "error",
+      "handling",
+      "nextjs",
+      "guide",
+      "tutorial",
+      "beginner",
+      "intermediate",
+      "advanced",
+    ],
+  },
+
+  {
     key: "secure-client-side-data-handling-nextjs",
     title: "Handling Client-Side Data Securely in Next.js",
     description:

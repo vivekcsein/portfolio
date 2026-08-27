@@ -1,4 +1,4 @@
-# Client Advisory & Technical Playbook: BaaS (Supabase/Firebase) vs. Custom Node.js
+w# Client Advisory & Technical Playbook: BaaS (Supabase/Firebase) vs. Custom Node.js
 
 > **Internal Use:** Sales discovery asset + technical operations manual. Use Section 1 and Section 4 in client-facing calls. Use Sections 2, 3, and 5 as internal engineering/PM reference and contract scaffolding.
 
