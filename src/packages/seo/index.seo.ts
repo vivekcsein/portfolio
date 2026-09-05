@@ -1,5 +1,5 @@
 export const seo = {
-  metadataBase: new URL("https://vivekcse.in"),
+  metadataBase: new URL("https://vivekcse.xyz"),
   title: {
     default: "VivekCSE",
     template: `%s | VivekCSE`,

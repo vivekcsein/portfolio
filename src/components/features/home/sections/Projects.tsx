@@ -23,12 +23,12 @@ const Projects = () => {
             </h2>
           </Reveal>
 
-          <a
+          <Link
             href={projects.cta.href}
             className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
           >
             {projects.cta.label} →
-          </a>
+          </Link>
         </div>
 
         <Reveal group className="grid grid-cols-1 gap-6 md:grid-cols-3">

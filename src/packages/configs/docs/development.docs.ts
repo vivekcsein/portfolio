@@ -134,4 +134,46 @@ export const developmentDocs = [
       "web-3d",
     ],
   },
+  {
+    key: "reusable-ui-layout-components-guide",
+    title: "Reusable UI Layout Components Guide",
+    description:
+      "Learn how to create reusable UI layout components for your frontend applications, including best practices and examples.",
+    slug: "reusable-ui-layout-components-guide",
+    docPath: "development/reusable-ui-layout-components-guide",
+    file: getFilePath(`${path}/frontend/reusable-ui-layout-components.md`),
+    createdAt: "04/09/2026",
+    updatedAt: "04/09/2026",
+    keywords: [
+      "development",
+      "frontend",
+      "ui",
+      "layout",
+      "components",
+      "reusable",
+      "best practices",
+    ],
+  },
+  {
+    key: "modern-frontend-development-standards-guide",
+    title: "Modern Frontend Development Standards & Implementation Guide",
+    description:
+      "A practical question-and-answer guide for building reusable, responsive, SEO-friendly, and maintainable Next.js applications.",
+    slug: "modern-frontend-development-standards-guide",
+    docPath: "development/modern-frontend-development-standards-guide",
+    file: getFilePath(
+      `${path}/frontend/modern-frontend-development-standards-implementation-guide.md`,
+    ),
+    createdAt: "24/08/2026",
+    updatedAt: "24/08/2026",
+    keywords: [
+      "development",
+      "frontend",
+      "ui",
+      "layout",
+      "components",
+      "reusable",
+      "best practices",
+    ],
+  },
 ] satisfies DocsItem[];

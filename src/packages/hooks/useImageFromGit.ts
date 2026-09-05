@@ -7,7 +7,7 @@ type GitImage = {
 
 type ImageSource = GitImage[] | string;
 
-const PLACEHOLDER_IMAGE = "/placeholder.png";
+const PLACEHOLDER_IMAGE = "/placeholder.jpg"; // logo.png exists in /public; a dedicated placeholder.png doesn't
 
 const normalizePath = (path: string): string =>
   path.startsWith("/") ? path : `/${path}`;
