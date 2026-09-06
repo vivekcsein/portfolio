@@ -176,4 +176,28 @@ export const developmentDocs = [
       "best practices",
     ],
   },
+  {
+    key: "rank-specific-keyword-seo",
+    title: "How to Rank #1 for a Specific Keyword",
+    description:
+      'A practical playbook for getting a target keyword (e.g. a brand name like "myroleplay") to the top of Google and other search engines.',
+    slug: "rank-specific-keyword-seo",
+    docPath: "development/rank-specific-keyword-seo",
+    file: getFilePath(`${path}/seo/rank-specific-keyword-seo.md`),
+    createdAt: "06/09/2026",
+    updatedAt: "06/09/2026",
+    keywords: [
+      "development",
+      "frontend",
+      "seo",
+      "ranking",
+      "keyword",
+      "google",
+      "search",
+      "optimization",
+      "backlinks",
+      "branded",
+      "competition",
+    ],
+  },
 ] satisfies DocsItem[];
