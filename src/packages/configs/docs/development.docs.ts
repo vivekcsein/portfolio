@@ -200,4 +200,26 @@ export const developmentDocs = [
       "competition",
     ],
   },
+  {
+    key: "authentication-guide",
+    title: "Authentication Guide",
+    description:
+      "Learn how to securely authenticate users in your Next.js applications.",
+    slug: "authentication-guide",
+    docPath: "development/authentication-guide",
+    file: getFilePath(`${path}/backend/authentication-guide.md`),
+    createdAt: "07/09/2026",
+    updatedAt: "07/09/2026",
+    keywords: [
+      "development",
+      "backend  ",
+      "authentication",
+      "nextjs",
+      "guide",
+      "tutorial",
+      "beginner",
+      "intermediate",
+      "advanced",
+    ],
+  },
 ] satisfies DocsItem[];

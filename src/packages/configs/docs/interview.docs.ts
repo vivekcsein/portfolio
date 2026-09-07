@@ -25,4 +25,15 @@ export const interviewDocs = [
     updatedAt: "24/08/2026",
     keywords: ["interview", "react.js", "interview"],
   },
+  {
+    key: "next-js-interview",
+    title: "Next.js Interview",
+    description: "Top 100 Next.js Interview Questions asked by the community",
+    slug: "next-js-interview",
+    docPath: "interview/next-js-interview",
+    file: getFilePath(`${path}/interview/next-js-interview.md`),
+    createdAt: "07/09/2026",
+    updatedAt: "07/09/2026",
+    keywords: ["interview", "next.js", "interview"],
+  },
 ] satisfies DocsItem[];
