@@ -8,14 +8,14 @@ const CtaSection = () => {
 
   return (
     <section id="contact" className="px-6 py-20 md:py-28">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-primary/20 via-background to-fuchsia-400/10 px-8 py-14 md:px-14">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-4xl border border-border bg-linear-to-br from-primary/20 via-background to-fuchsia-400/10 px-8 py-14 md:px-14">
         <div className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-primary/25 blur-3xl" />
 
         <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
           <Reveal direction="left">
             <h2 className="text-3xl leading-tight font-bold text-balance sm:text-4xl">
               {cta.heading[0]}{" "}
-              <span className="bg-gradient-to-r from-primary to-fuchsia-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-primary to-fuchsia-400 bg-clip-text text-transparent">
                 {cta.heading[1]}
               </span>
             </h2>

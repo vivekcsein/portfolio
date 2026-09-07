@@ -225,19 +225,43 @@ export const homeConfig = {
     heading: "Explore what I build",
     description:
       "Interactive 3D models of the tools and systems and experiences I work with.",
-    cta: { label: "View 3D Showcase", href: "#showcase" },
+    cta: { label: "View 3D Showcase", href: "/projects" },
     items: [
-      { title: "Web Apps", icon: "laptop", modelKey: "showcase-web-apps" },
+      {
+        title: "Web Apps",
+        icon: "laptop",
+        modelKey: "showcase-web-apps",
+        image: {
+          src: "/images/web-apps.jpg",
+          alt: "Web Apps",
+        },
+      },
       {
         title: "APIs & Backend",
         icon: "server",
         modelKey: "showcase-api-backend",
+        image: {
+          src: "/images/api-backend.jpg",
+          alt: "APIs & Backend",
+        },
       },
-      { title: "Databases", icon: "database", modelKey: "showcase-database" },
+      {
+        title: "Databases",
+        icon: "database",
+        modelKey: "showcase-database",
+        image: {
+          src: "/images/databases.jpg",
+          alt: "Databases",
+        },
+      },
       {
         title: "AR Experiences",
         icon: "sparkles",
         modelKey: "showcase-ar-experience",
+        image: {
+          src: "/images/ar-experiences.jpg",
+          alt: "AR Experiences",
+        },
       },
     ],
   },
@@ -246,7 +270,7 @@ export const homeConfig = {
     heading: ["Let's build something", "amazing together"],
     description:
       "I'm open to freelance projects, full-time opportunities and exciting collaborations.",
-    button: { label: "Let's Connect", href: "#contact" },
+    button: { label: "Let's Connect", href: "/contact" },
     quote: {
       text: "Vivek is an exceptional developer who delivers high-quality work on time. His expertise in Next.js and backend architecture is top-notch.",
       author: "Satisfied Client",

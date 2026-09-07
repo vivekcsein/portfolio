@@ -9,6 +9,7 @@ const fullStackApps = [
     createdAt: "12/06/2026",
     updatedAt: "on going",
     client: "team",
+    coverImage: "/images/cover/sparkverse-cover.png",
     description:
       "A tech-focused news platform built to surface what is shaping the technology world — from emerging trends and AI to CEO insights, developer conversations, gaming, and the ideas driving the next wave of innovation.",
     tags: [
@@ -44,7 +45,8 @@ const fullStackApps = [
     createdAt: "30/08/2025",
     updatedAt: "26/07/2026",
     client: "team",
-    href: "https://sixtealstore.vercel.app/",
+    href: "https://sixteal.vercel.app/",
+    coverImage: "/images/cover/sixteal-cover.png",
     description:
       "A modern e-commerce platform designed around a smooth shopping experience, with product discovery, cart management, and interactive storefront experiences powered by a scalable full-stack architecture.",
     tags: [
@@ -81,6 +83,7 @@ const fullStackApps = [
     updatedAt: "next",
     client: "team",
     href: "https://github.com/frenzzofficial/cloak-shield-web",
+    coverImage: "/images/cover/cloakshield-cover.png",
     description:
       "A secure authentication-focused web application built with Next.js and Hono, using Supabase and MySQL to handle identity, user data, and backend services with a clean full-stack architecture.",
     tags: [

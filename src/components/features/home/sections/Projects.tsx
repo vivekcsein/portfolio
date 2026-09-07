@@ -1,6 +1,7 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/reveal/Reveal";
 import TiltCard from "@/components/ui/tilt-card/TiltCard";
@@ -41,6 +42,15 @@ const Projects = () => {
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 transition-colors hover:border-primary/40"
               >
                 <div className="relative flex aspect-video items-center justify-center bg-linear-to-br from-primary/20 via-muted to-fuchsia-400/10">
+                  {project.coverImage && (
+                    <Image
+                      id={`showcase-item-${project.title}`}
+                      src={project.coverImage}
+                      alt={project.title}
+                      width={1024}
+                      height={768}
+                    />
+                  )}
                   <ExternalLink className="size-5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
 

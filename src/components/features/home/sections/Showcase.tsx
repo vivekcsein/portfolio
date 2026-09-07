@@ -1,6 +1,6 @@
 "use client";
 
-import ModelSlot from "@/components/ui/models/ModelSlot";
+import Image from "next/image";
 import Reveal from "@/components/ui/reveal/Reveal";
 import homeConfig from "@/packages/configs/home.config";
 
@@ -27,10 +27,17 @@ const Showcase = () => {
         >
           {showcase.items.map((item) => (
             <div key={item.title} className="flex flex-col gap-3">
-              <ModelSlot
+              {/* <ModelSlot
                 reservedFor={item.title}
                 label={item.title}
                 className="aspect-square"
+              /> */}
+              <Image
+                id={`showcase-item-${item.title}`}
+                src={item.image.src}
+                alt={item.image.alt}
+                width={128}
+                height={128}
               />
               <p className="text-center text-sm font-medium">{item.title}</p>
             </div>

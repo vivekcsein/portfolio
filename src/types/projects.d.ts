@@ -90,6 +90,7 @@ export interface Project {
   demoUrl?: string;
   repositoryUrl?: string;
 
+  coverImage?: string;
   screenshots?: string[];
   videoUrl?: string;
 
