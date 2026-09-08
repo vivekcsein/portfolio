@@ -4,6 +4,18 @@ const path = "/business";
 
 export const businessDocs = [
   {
+    key: "how-to-approach-creating-app",
+    title: "How to Approach Creating a Web-App from Scratch",
+    description:
+      "A detailed guide to creating a web app from scratch, with the exact AI prompts we use.",
+    slug: "how-to-approach-creating-app",
+    docPath: "business/how-to-approach-creating-app",
+    file: getFilePath(`${path}/how-to-approach-creating-app.md`),
+    createdAt: "09/09/2026",
+    updatedAt: "09/09/2026",
+    keywords: ["business", "ai", "client", "app", "nextjs"],
+  },
+  {
     key: "ai-nextjs-playbook",
     title: "AI & Next.js Playbook",
     description:
