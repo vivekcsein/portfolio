@@ -22,7 +22,30 @@ export const developmentDocs = [
       "project organization",
     ],
   },
-
+  {
+    key: "ui-component-prompt-guide",
+    title: "UI Component Prompt Guide",
+    description:
+      "A reusable set of prompts for generating individual, production-grade UI components (Button, Link, Input, and other micro UI) for your Next.js-UI template. Built from what actually broke in the audit, so each prompt now closes those gaps by default instead of leaving them to chance.",
+    slug: "ui-component-prompt-guide",
+    docPath: "development/ui-component-prompt-guide",
+    file: getFilePath(`${path}/frontend/ui-component-prompt-guide.md`),
+    createdAt: "09/09/2026",
+    updatedAt: "09/09/2026",
+    keywords: [
+      "development",
+      "frontend",
+      "ui",
+      "components",
+      "prompt",
+      "nextjs",
+      "guide",
+      "tutorial",
+      "beginner",
+      "intermediate",
+      "advanced",
+    ],
+  },
   {
     key: "vs-code-setup-guide",
     title: "VS Code Setup & Essential Shortcuts",

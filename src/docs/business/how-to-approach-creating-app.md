@@ -108,6 +108,8 @@ We build the interface in layers, smallest pieces first:
 2. **Structural components** — Header, Footer, Sidebar, Navbar
 3. **App Layout** — everything is wrapped in a single `AppClientLayout`, ensuring consistent structure across the entire app
 
+[check ui-component-docs](/docs/development/ui-component-prompt-guide)
+
 By the end of this stage, the full layout and theme are complete and consistent site-wide.
 
 #### 🔹 Prompt1 — Convert Design Image → React Component
