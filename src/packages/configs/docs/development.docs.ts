@@ -31,7 +31,7 @@ export const developmentDocs = [
     docPath: "development/ui-component-prompt-guide",
     file: getFilePath(`${path}/frontend/ui-component-prompt-guide.md`),
     createdAt: "09/09/2026",
-    updatedAt: "09/09/2026",
+    updatedAt: "10/09/2026",
     keywords: [
       "development",
       "frontend",

@@ -258,6 +258,161 @@ Output:
   hover effects), and button-style Link side by side
 ```
 
+## Ready-made prompt: Accurate Link Component
+
+```
+# Prompt: Standalone Link Component (single source of truth)
+
+Assume the project already has Tailwind CSS v4 configured, a `cn()`
+utility (clsx + tailwind-merge) at the standard utils path, and
+`class-variance-authority` installed. Do not set any of that up or
+explain how — go straight to building the component.
+
+Create a standalone `Link` component, extracted into its own file,
+that extends `next/link` (not a native `<a>`) so all Next.js routing
+behavior (prefetching, client-side navigation, `href` typing) works
+natively.
+
+## Independence requirements (critical)
+
+- The component must be fully self-contained. It must NOT import
+  `Button`, `buttonVariants`, or any Button-internal code. `Link` and
+  `Button` must each build and ship independently.
+- Visual parity between Link's `button` variant and Button's `primary`
+  variant is achieved by both pulling from the SAME shared design
+  tokens — a `motion.config.ts` (or equivalent shared constants file)
+  plus theme CSS variables — never by one importing the other's
+  styles or variants, and never by duplicating raw magic numbers
+  (durations, easings, padding, radius) in both places.
+- Mark the file `"use client"` itself. Never force a parent/page
+  component to become client-rendered just to use this Link.
+
+## Tech requirements
+
+- TypeScript, extending `React.ComponentProps<typeof NextLink>`.
+- Styling via Tailwind CSS v4 + theme CSS variables only — no
+  hardcoded colors, and no CSS variable referenced that isn't defined
+  in the project's current theme stylesheet.
+- `cva` for variants, defined independently in this file — do not
+  import a cva instance from Button or anywhere else.
+- `cn()` for all conditional/merged classNames.
+- Forward refs (`React.forwardRef`).
+- Export both `Link` and `linkVariants`, entirely independent of
+  Button's exports.
+
+## Variants required
+
+**`primary`** (default)
+- Text link, color transitions to accent on hover.
+- Animated underline via `::after`, `width: 0 → 100%` on hover/focus,
+  ~300ms ease-out.
+- `underlineOrigin: "left" | "center" | "right"` (default `"center"`)
+  controls where the underline expansion originates from:
+  - `left`: anchored left edge, grows rightward.
+  - `center`: anchored at 50% with a `-50%` translateX so it stays
+    centered as it grows.
+  - `right`: anchored right edge, grows leftward.
+
+**`secondary`**
+- Structural base only: `relative`, with bottom padding reserved so
+  an active indicator never shifts layout when it appears.
+- `hoverEffect: "text" | "background"` (default `"text"`) — config-
+  driven choice of hover treatment, never hardcoded per call-site:
+  - `hoverEffect: "text"` — no background involved at all. Inactive:
+    muted color (~70% opacity of the primary/accent token). Hover:
+    full-opacity color, plain color transition, nothing else moves.
+    Active: full-opacity color PLUS a static (non-animated) indicator
+    bar — a thin full-width rounded bar pinned to the bottom edge of
+    the link, present or absent based on `active`, no transition on
+    the bar itself (it should snap in/out with route changes, not
+    animate).
+  - `hoverEffect: "background"` — rounded hover background using
+    theme accent tokens, paired with a small (5px) leading status dot
+    that shifts from a muted foreground tint to the accent/primary
+    token on hover or when active.
+- A boolean `active` prop (not just relying on native `aria-current`)
+  drives all of the above and also auto-sets `aria-current="page"` on
+  the rendered anchor for accessibility — the caller only ever passes
+  `active`, never has to set `aria-current` manually.
+
+**`neutral`**
+- Fully inherits surrounding text color, no underline, no background
+  change on hover — for use inside colored banners/footers where the
+  parent context sets the color.
+
+**`button`**
+- Its own independently defined cva variant, matching Button's
+  `primary` variant (same animation feel, padding, radius, shadow)
+  purely via the shared tokens file — implemented natively here, not
+  inherited from Button.
+- Filled/gradient background, hover lift + brightness, soft colored
+  shadow built from theme tokens (e.g. `color-mix()` against the
+  accent/primary token — not a flat Tailwind shadow utility).
+- A one-shot diagonal shine sweep on hover.
+- Active state scales down slightly with a tighter shadow.
+- Supports `aria-disabled="true"`: disables pointer events and hover
+  effects, reduces opacity.
+
+## Defaults
+
+Set via cva's `defaultVariants`, not manual fallback logic:
+- `variant` → `"primary"`
+- `underlineOrigin` → `"center"`
+- `hoverEffect` → `"text"`
+- `active` → `false`
+
+## Code quality requirements
+
+- Underline animation logic for all three `underlineOrigin` values
+  must be implemented in exactly ONE place — either a shared hook or
+  `compoundVariants`, never both. Pick one and state which, in a
+  comment at the top of the file.
+- The `secondary` variant's two `hoverEffect` treatments and its
+  `active` state must each be their own distinct `compoundVariants`
+  entries — they must not share a class string or leak into each
+  other (e.g. the dot must never render for `hoverEffect: "text"`,
+  and the bottom bar must never render for `hoverEffect: "background"`).
+- Respect `prefers-reduced-motion` for every animated variant
+  (underline, button lift, and shine sweep). The `secondary` active
+  bar is not animated in the first place, so this doesn't apply to it.
+- Fully accessible:
+  - Visible `focus-visible` ring using theme ring/radius tokens.
+  - Correct semantic anchor behavior — no href-less
+    `javascript:void(0)`.
+  - `target="_blank"` auto-applies `rel="noopener noreferrer"` unless
+    the caller already set a conflicting `rel`.
+  - `active` auto-sets `aria-current="page"`, as described above.
+
+## Deliverables
+
+Only the files actually needed to implement and demonstrate the
+component — no setup instructions, no dependency install steps:
+
+1. **`Link.tsx`** — the component + variants, fully self-contained.
+2. **The single hook/utility** used for underline origins (only if
+   the hook approach was chosen over `compoundVariants`).
+3. **`motion.config.ts`** (or equivalent) — the shared tokens file
+   both Link and Button read from for the `button` variant's
+   timing/easing/shadow values.
+4. **`LinkExamples.tsx`** — a showcase rendering every variant:
+   `primary` in all three `underlineOrigin` values side by side;
+   `secondary` with `hoverEffect: "text"` in both inactive and
+   `active` states (to show the bar), and `hoverEffect: "background"`
+   in both inactive and `active` states (to show the dot); `neutral`
+   inside a dark banner to prove color inheritance; and `button` in
+   normal and `aria-disabled` states.
+
+## Constraints
+
+- No inline `<style>` blocks or CSS-in-JS — Tailwind utility classes
+  only (arbitrary values allowed for `color-mix()` shadows and the
+  shine keyframe).
+- No hardcoded hex/HSL colors — every color references an existing
+  theme CSS variable.
+- No values shared with Button's `primary` variant may be duplicated
+  as raw numbers — they must come from the shared tokens file.
+```
+
 ---
 
 ## Ready-made prompt: Input
