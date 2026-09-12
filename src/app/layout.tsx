@@ -5,6 +5,10 @@ import fonts from "@/packages/configs/font.config";
 import { seo } from "@/packages/seo/index.seo";
 export const metadata: Metadata = seo;
 
+interface LayoutProps<_T> {
+  children: React.ReactNode;
+}
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
