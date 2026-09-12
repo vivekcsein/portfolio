@@ -48,6 +48,18 @@ export const businessDocs = [
     ],
   },
   {
+    key: "how-to-connect-github-to-godaddy-ssl",
+    title: "How to Connect a GoDaddy Domain to GitHub Pages with SSL",
+    description:
+      "A detailed guide on how to connect a custom domain purchased on GoDaddy to GitHub Pages with HTTPS/SSL enabled.",
+    slug: "how-to-connect-github-to-godaddy-ssl",
+    docPath: "business/how-to-connect-github-to-godaddy-ssl",
+    file: getFilePath(`${path}/how-to-connect-github-to-godaddy-ssl.md`),
+    createdAt: "12/09/2026",
+    updatedAt: "12/09/2026",
+    keywords: ["business", "github", "godaddy", "ssl", "domain", "custom"],
+  },
+  {
     key: "baas-supabase-firebase",
     title: "BaaS & Supabase/Firebase Playbook",
     description:
