@@ -82,7 +82,7 @@ const fullStackApps = [
     createdAt: "30/08/2025",
     updatedAt: "next",
     client: "team",
-    href: "https://github.com/frenzzofficial/cloak-shield-web",
+    href: "https://cloak-shield-web.vercel.app/",
     coverImage: "/images/cover/cloakshield-cover.png",
     description:
       "A secure authentication-focused web application built with Next.js and Hono, using Supabase and MySQL to handle identity, user data, and backend services with a clean full-stack architecture.",

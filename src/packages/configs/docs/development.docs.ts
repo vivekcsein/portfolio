@@ -114,6 +114,28 @@ export const developmentDocs = [
   },
 
   {
+    key: "how-to-achieve-free-website-hosting-with-supabase",
+    title: "How to Achieve Free Website Hosting with Supabase",
+    description:
+      "Learn how to build a fast, secure, and scalable website with live data and user login using Supabase.",
+    slug: "how-to-achieve-free-website-hosting-with-supabase",
+    docPath: "development/how-to-achieve-free-website-hosting-with-supabase",
+    file: getFilePath(
+      `${path}/developer/how-to-achieve-free-website-hosting-with-supabase.md`,
+    ),
+    createdAt: "12/09/2026",
+    updatedAt: "12/09/2026",
+    keywords: [
+      "development",
+      "supabase",
+      "hosting",
+      "live",
+      "data",
+      "user",
+      "login",
+    ],
+  },
+  {
     key: "secure-client-side-data-handling-nextjs",
     title: "Handling Client-Side Data Securely in Next.js",
     description:

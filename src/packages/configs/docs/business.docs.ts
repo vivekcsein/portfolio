@@ -28,6 +28,26 @@ export const businessDocs = [
     keywords: ["business", "ai", "client", "machine learning", "llm", "openai"],
   },
   {
+    key: "how-website-live-works-hosting-live",
+    title: "How Your Website Works Free: Hosting, Live Data & User Login",
+    description:
+      "A free guide for non-technical stakeholders on how to build a fast, secure, and scalable website with live data and user login.",
+    slug: "how-website-live-works-hosting-live",
+    docPath: "business/how-website-live-works-hosting-live",
+    file: getFilePath(`${path}/how-website-live-works-hosting-live.md`),
+    createdAt: "12/09/2026",
+    updatedAt: "12/09/2026",
+    keywords: [
+      "business",
+      "website",
+      "hosting",
+      "live",
+      "data",
+      "user",
+      "login",
+    ],
+  },
+  {
     key: "baas-supabase-firebase",
     title: "BaaS & Supabase/Firebase Playbook",
     description:

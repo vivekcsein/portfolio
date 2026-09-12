@@ -114,151 +114,137 @@ Output:
 ## Ready-made prompt: Button
 
 ```
-Create a standalone Button component, extracted into its own file,
+# Prompt: Standalone Button Component
+
+Create a standalone `Button` component, extracted into its own file,
 that extends the native HTML button props (not a wrapper that
 reinvents them).
 
-Isolation requirement (critical):
-- This component must be the ONLY client-rendered piece in its tree.
-  Mark it "use client" itself and keep it self-contained — never force
-  a parent/page component to become client-rendered just to use this
-  Button. Any animation/interactivity logic must live inside this
-  component or its own hooks, not leak upward.
+## Isolation requirement (critical)
 
-Tech requirements:
+- This component must be the ONLY client-rendered piece in its tree.
+  Mark it `"use client"` itself and keep it self-contained — never
+  force a parent/page component to become client-rendered just to use
+  this Button. Any animation/interactivity logic must live inside this
+  component or its own hooks, not leak upward.
+- The component must be fully self-contained: it must NOT import a
+  `Link` component or any Link-internal code, even for the `link`
+  variant described below. `Button` builds and ships independently.
+
+## Tech requirements
+
 - TypeScript, extending `React.ButtonHTMLAttributes<HTMLButtonElement>`
   so all native button props (onClick, disabled, type, etc.) work out
-  of the box
+  of the box.
 - Built shadcn-button-compatible: same variant/size API shape as
-  shadcn/ui's Button (drop-in replacement), using `cva` for variants
-- Styling via Tailwind CSS v4 + our theme CSS variables
-  (styles/theme/current-theme.css) — no hardcoded colors. If the
-  primary variant uses a glow/shadow effect, define that shadow token
-  (e.g. `--glow`, `--glow-lg`) in current-theme.css for both light and
-  dark BEFORE referencing it in a class — never reference a CSS
-  variable that isn't defined anywhere.
-- Use `cn()` for all conditional/merged classNames
+  shadcn/ui's Button (drop-in replacement), using `cva` for variants,
+  defined independently in this file.
+- Styling via Tailwind CSS v4 + theme CSS variables only — no
+  hardcoded colors.
+- `current-theme.css` is off-limits: reference its existing variables
+  only, never add, rename, or edit anything inside it. Every color and
+  shadow token this component uses (`--destructive` /
+  `--destructive-foreground`, `--success` / `--success-foreground`,
+  glow/shadow tokens, etc.) is assumed to already exist there. Do not
+  add new variables to that file, even conditionally ("if it doesn't
+  already exist"). If a token this component would like to use isn't
+  already defined in the theme, derive it instead as a utility class
+  in `ui.css` via `color-mix()` against the nearest existing theme
+  token — never extend `current-theme.css` to fill the gap.
+- Any custom CSS the component needs that Tailwind utility classes
+  can't express — a glow/shadow effect, a fill-sweep or gradient-shift
+  keyframe for the `primary` variant, etc. — does not live inline or
+  scoped only to Button. It goes into the shared stylesheet `ui.css`
+  as reusable utility classes, written so other components (e.g. a
+  Link component's button-styled variant, if one exists in the
+  project) could consume the exact same classes instead of
+  redefining them. Keep `ui.css` limited to genuinely shared
+  primitives — nothing Button-specific belongs there.
+- The `primary` variant's animation timing (duration, easing) and any
+  shadow/glow values must come from a shared tokens file,
+  `motion.config.ts` (or equivalent) — not hardcoded numbers in this
+  component. If that file already exists in the project, extend it
+  rather than redefining conflicting values; if it doesn't exist yet,
+  create it with just the values Button needs.
+- Use `cn()` for all conditional/merged classNames.
 
-Variants required (all seven, fully implemented — none as a stub):
-- `primary` — our signature interactive button: animated hover/press
-  (scale, gradient shift, or fill-sweep — CSS transition, pixel-perfect
-  read of the design), should feel premium and "alive"
-- `secondary` — same base structure as primary, but the ONLY change on
-  hover is a flat background-color shift toward the accent color — no
-  motion, no scale, no extra animation
-- `outline` — bordered, transparent background, standard shadcn hover
-- `ghost` — transparent, no border, standard shadcn hover
-- `destructive` — uses the `--destructive` / `--destructive-foreground`
-  theme tokens
-- `success` — uses the `--success` / `--success-foreground` theme
-  tokens (define these in current-theme.css if they don't already
-  exist)
-- `link` — visually and behaviorally matches our primary Link
-  component: underline expands outward from the center on hover, text
-  color transitions to primary/accent color, NO button chrome at all
-  (no background, no border, no padding, no shadow, no fixed height)
+## Variants required (all seven, fully implemented — none as a stub)
 
-Sizes: sm / default / lg / icon, matching shadcn's scale.
+- **`primary`** — the signature interactive button: animated
+  hover/press (scale, gradient shift, or fill-sweep — CSS transition,
+  pixel-perfect read of the design), should feel premium and "alive".
+  Timing/easing/shadow values come from `motion.config.ts`; any
+  non-Tailwind-expressible CSS (the sweep keyframe, a `color-mix()`
+  glow shadow) comes from `ui.css`.
+- **`secondary`** — same base structure as primary, but the ONLY
+  change on hover is a flat background-color shift toward the accent
+  color — no motion, no scale, no extra animation.
+- **`outline`** — bordered, transparent background, standard shadcn
+  hover.
+- **`ghost`** — transparent, no border, standard shadcn hover.
+- **`destructive`** — uses the existing `--destructive` /
+  `--destructive-foreground` theme tokens.
+- **`success`** — uses the existing `--success` /
+  `--success-foreground` theme tokens. Do not add these to
+  `current-theme.css`; assume they're already defined there.
+- **`link`** — visually and behaviorally matches a text-link style:
+  underline expands outward from the center on hover, text color
+  transitions to primary/accent color, NO button chrome at all (no
+  background, no border, no padding, no shadow, no fixed height).
+  Implement this natively with `cva`/Tailwind classes in this file —
+  do not import an actual Link component to achieve it.
 
-Defaults:
-- If no `variant` prop is passed, default to `primary`
-- If no `size` prop is passed, default to `default`
-- Set via cva's `defaultVariants`, not manual fallback logic
+## Sizes
 
-Code quality requirements:
-- Export both `Button` and `buttonVariants`
-- Forward refs (`React.forwardRef`)
+`sm` / `default` / `lg` / `icon`, matching shadcn's scale.
+
+## Defaults
+
+- If no `variant` prop is passed, default to `primary`.
+- If no `size` prop is passed, default to `default`.
+- Set via cva's `defaultVariants`, not manual fallback logic.
+
+## Code quality requirements
+
+- Export both `Button` and `buttonVariants`.
+- Forward refs (`React.forwardRef`).
 - Any animation logic beyond simple CSS transitions lives in a
-  `useButtonInteraction` hook, not inline
-- Respect `prefers-reduced-motion` for the primary variant's animation
-- Fully accessible: focus-visible ring, disabled removes interactivity
-  and sets aria-disabled, no keyboard traps
+  `useButtonInteraction` hook, not inline.
+- Respect `prefers-reduced-motion` for the primary variant's
+  animation.
+- Fully accessible: focus-visible ring, disabled removes
+  interactivity and sets `aria-disabled`, no keyboard traps.
 
-Output:
-- Button.tsx (component + variants, all 7 variants fully built)
-- useButtonInteraction.ts
-- ButtonExamples.tsx showing all 7 variants, all 4 sizes, and a
-  disabled row, side by side
+## Constraints
+
+- No inline `<style>` blocks or CSS-in-JS — Tailwind utility classes
+  only. Anything Tailwind can't express (sweep keyframe, `color-mix()`
+  glow shadow) is defined once in `ui.css`, never duplicated inline.
+- `current-theme.css` is read-only for this task: no new variables,
+  no edits, no renames.
+- No hardcoded hex/HSL colors — every color references an existing
+  theme CSS variable (directly, or via a `ui.css` utility built on top
+  of one).
+
+## Output
+
+- **`Button.tsx`** — component + variants, all 7 variants fully
+  built, no dependency on any Link component.
+- **`useButtonInteraction.ts`**
+- **`motion.config.ts`** (or equivalent) — shared timing/easing/shadow
+  tokens for the `primary` variant (create if it doesn't already exist
+  in the project, extend if it does — never redefine conflicting
+  values).
+- **`ui.css`** — shared non-Tailwind utility classes the `primary`
+  variant needs (sweep keyframe, `color-mix()` glow shadow, etc.),
+  written for reuse rather than scoped to Button alone.
+- **`ButtonExamples.tsx`** showing all 7 variants, all 4 sizes, and a
+  disabled row, side by side.
 ```
 
 ---
 
-## Ready-made prompt: Link
-
-```
-Create a standalone Link component, extracted into its own file, that
-extends next/link (not a native <a> tag) so all Next.js routing
-behavior (prefetching, client-side navigation, href typing) works
-natively.
-
-Independence requirement (critical):
-- This component must be fully self-contained and must NOT import
-  Button, buttonVariants, or any Button-internal code. Link and Button
-  must be able to exist, build, and ship independently.
-- Visual parity between Link's `button` variant and Button's `primary`
-  variant is achieved by both pulling from the SAME shared design
-  tokens (a `motion.config.ts` or equivalent shared constants file,
-  plus theme CSS variables) — not by one importing the other's styles
-  or variants.
-
-Isolation requirement (critical):
-- Mark this "use client" itself. Never force a parent/page component
-  to become client-rendered just to use this Link.
-
-Tech requirements:
-- TypeScript, extending `React.ComponentProps<typeof NextLink>`
-- Styling via Tailwind CSS v4 + our theme CSS variables — no hardcoded
-  colors, and no CSS variable referenced that isn't defined in
-  current-theme.css
-- `cva` for variants, defined independently in this file — do not
-  import a cva instance from Button or anywhere else
-- `cn()` for all conditional/merged classNames
-- Single source of truth: any timing/easing/spacing values that must
-  visually match Button (e.g. the `button` variant) come from ONE
-  shared config file that both Link and Button separately reference —
-  never duplicate raw magic numbers, never import one component's
-  variants into the other
-
-Variants required (all three, fully implemented):
-- `primary` — animated underline on hover, expansion origin controlled
-  by an `underlineOrigin: "left" | "center" | "right"` prop, expanding
-  outward from that origin; text color transitions to accent
-  simultaneously
-- `secondary` — no underline. On hover, either background-color or
-  text-color shifts toward accent, chosen via a `hoverEffect:
-  "background" | "text"` prop — config-driven, not hardcoded per-use
-- `button` — its own independently defined cva variant matching
-  Button's `primary` variant (same animation feel, padding, radius,
-  shadow) via the shared tokens file — implemented natively here, not
-  inherited from Button
-
-Defaults:
-- `variant` defaults to `primary`
-- `underlineOrigin` defaults to `center`
-- `hoverEffect` defaults to `text`
-- Set via cva's `defaultVariants`, not manual fallback logic
-
-Code quality requirements:
-- Export both `Link` and `linkVariants`, entirely independent of
-  Button's exports
-- Forward refs (`React.forwardRef`)
-- Underline animation logic for all three origins must be implemented
-  in exactly ONE place — either a shared hook or `compoundVariants`,
-  never both at once (pick one and say which)
-- Respect `prefers-reduced-motion` for all animated variants
-- Fully accessible: visible focus-visible ring, correct semantic
-  anchor behavior (no href-less "javascript:void(0)"), `target="_blank"`
-  auto-applies `rel="noopener noreferrer"` unless the caller already
-  set a conflicting `rel`
-
-Output:
-- Link.tsx (component + variants, fully self-contained)
-- The single hook/utility used for underline origins
-- LinkExamples.tsx showing primary (all 3 origins), secondary (both
-  hover effects), and button-style Link side by side
-```
-
-## Ready-made prompt: Accurate Link Component
+## Ready-made prompt: Link Component
 
 ```
 # Prompt: Standalone Link Component (single source of truth)
@@ -293,6 +279,20 @@ natively.
 - Styling via Tailwind CSS v4 + theme CSS variables only — no
   hardcoded colors, and no CSS variable referenced that isn't defined
   in the project's current theme stylesheet.
+- `current-theme.css` is off-limits: read/reference its existing
+  variables only, never add, rename, or edit anything inside it. If a
+  variable Link needs doesn't already exist there, that's a signal to
+  reconsider the approach, not a reason to touch that file.
+- Any custom CSS this component needs that Tailwind utility classes
+  can't express (the underline `::after`, the shine sweep keyframes,
+  `color-mix()` shadow helpers, etc.) must NOT be written inline or
+  scoped only to Link. It goes into a single shared stylesheet,
+  `ui.css`, as reusable utility classes — written so `Button` can pull
+  from the exact same classes for its matching `primary` variant
+  instead of redefining them. Nothing project-specific to Link alone
+  should live in `ui.css`; keep it limited to genuinely shared
+  primitives (shine sweep, underline expansion, mixed-shadow
+  utilities, etc.).
 - `cva` for variants, defined independently in this file — do not
   import a cva instance from Button or anywhere else.
 - `cn()` for all conditional/merged classNames.
@@ -347,8 +347,11 @@ natively.
   inherited from Button.
 - Filled/gradient background, hover lift + brightness, soft colored
   shadow built from theme tokens (e.g. `color-mix()` against the
-  accent/primary token — not a flat Tailwind shadow utility).
-- A one-shot diagonal shine sweep on hover.
+  accent/primary token — not a flat Tailwind shadow utility). This
+  `color-mix()` shadow helper belongs in `ui.css` as a shared utility
+  class, not duplicated inline here and again in Button's file.
+- A one-shot diagonal shine sweep on hover, implemented as the shared
+  `ui.css` keyframe/utility described above.
 - Active state scales down slightly with a tighter shadow.
 - Supports `aria-disabled="true"`: disables pointer events and hover
   effects, reduces opacity.
@@ -394,7 +397,12 @@ component — no setup instructions, no dependency install steps:
 3. **`motion.config.ts`** (or equivalent) — the shared tokens file
    both Link and Button read from for the `button` variant's
    timing/easing/shadow values.
-4. **`LinkExamples.tsx`** — a showcase rendering every variant:
+4. **`ui.css`** — the shared, non-Tailwind CSS utilities (shine
+   sweep, underline expansion helper if needed, `color-mix()` shadow
+   classes, etc.) that both Link and Button consume. `current-theme.css`
+   is not touched or extended by this file — `ui.css` only builds
+   utility classes on top of the variables that already exist there.
+5. **`LinkExamples.tsx`** — a showcase rendering every variant:
    `primary` in all three `underlineOrigin` values side by side;
    `secondary` with `hoverEffect: "text"` in both inactive and
    `active` states (to show the bar), and `hoverEffect: "background"`
@@ -404,13 +412,20 @@ component — no setup instructions, no dependency install steps:
 
 ## Constraints
 
-- No inline `<style>` blocks or CSS-in-JS — Tailwind utility classes
-  only (arbitrary values allowed for `color-mix()` shadows and the
-  shine keyframe).
+- No inline `<style>` blocks or CSS-in-JS. Plain Tailwind utility
+  classes handle everything they can; anything they can't (the shine
+  keyframe, `color-mix()` shadows, underline expansion if not done via
+  `compoundVariants`) is defined once in `ui.css` and referenced from
+  there — never redeclared per component.
+- `current-theme.css` is read-only for this task: no new variables,
+  no edits, no renames. If something feels like it belongs in the
+  theme file, put it in `ui.css` instead and reference existing theme
+  variables from it.
 - No hardcoded hex/HSL colors — every color references an existing
   theme CSS variable.
 - No values shared with Button's `primary` variant may be duplicated
-  as raw numbers — they must come from the shared tokens file.
+  as raw numbers — they must come from the shared tokens file
+  (`motion.config.ts`) and/or the shared `ui.css` utility classes.
 ```
 
 ---
