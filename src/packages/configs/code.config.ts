@@ -1,32 +1,11 @@
+import type { ContentConfig } from "@/types/content";
 import { arrayInJsCode } from "./code";
 
 export { getFilePath } from "../utils/get-file";
 
-export type CodeCategory = "arrayInJs" | "others";
+export type CodeCategory = "arrayInJs";
 
-export type CodeItem = {
-  key: string;
-  title: string;
-  description?: string;
-  slug: string;
-  /** Category/slug composite string — reference-only metadata, not a navigable route.
-   * The real in-site link is computed from `slug` — see normalizeDocsList() in
-   * packages/utils/content-normalize.ts. */
-  docPath: string;
-  file: string;
-  createdAt: string;
-  updatedAt: string;
-  keywords?: string[];
-};
-
-export type CodeCategoryConfig = {
-  key: CodeCategory;
-  title: string;
-  description?: string;
-  children: CodeItem[];
-};
-
-export const codeConfig = {
+export const codeConfig: ContentConfig<CodeCategory> = {
   key: "CODE",
   title: "Code",
   description:
@@ -42,11 +21,4 @@ export const codeConfig = {
       children: arrayInJsCode,
     },
   ],
-} satisfies {
-  key: string;
-  title: string;
-  description: string;
-  slug: string;
-  path: string;
-  categories: CodeCategoryConfig[];
 };

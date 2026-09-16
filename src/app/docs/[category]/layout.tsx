@@ -1,11 +1,11 @@
 import "@/styles/ui/content-timeline.css";
 
-interface DocsCateoryLayoutPageProps {
+interface DocsCategoryLayoutProps {
   children: React.ReactNode;
 }
 
-const DocsCategoryLayoutPage = ({ children }: DocsCateoryLayoutPageProps) => {
-  return <div className="docs-layout">{children}</div>;
+const DocsCategoryLayout = ({ children }: DocsCategoryLayoutProps) => {
+  return <div className="hub-layout">{children}</div>;
 };
 
-export default DocsCategoryLayoutPage;
+export default DocsCategoryLayout;

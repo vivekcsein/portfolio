@@ -1,3 +1,4 @@
+import type { ContentConfig } from "@/types/content";
 import {
   bestDocs,
   businessDocs,
@@ -19,29 +20,7 @@ export type DocsCategory =
   | "interview"
   | "others";
 
-export type DocsItem = {
-  key: string;
-  title: string;
-  description?: string;
-  slug: string;
-  /** Category/slug composite string — reference-only metadata, not a navigable route.
-   * The real in-site link is computed from `slug` — see normalizeDocsList() in
-   * packages/utils/content-normalize.ts. */
-  docPath: string;
-  file: string;
-  createdAt: string;
-  updatedAt: string;
-  keywords?: string[];
-};
-
-export type DocsCategoryConfig = {
-  key: DocsCategory;
-  title: string;
-  description?: string;
-  children: DocsItem[];
-};
-
-export const docsConfig = {
+export const docsConfig: ContentConfig<DocsCategory> = {
   key: "DOCS",
   title: "Documentation",
   description:
@@ -104,11 +83,4 @@ export const docsConfig = {
       children: othersDocs,
     },
   ],
-} satisfies {
-  key: string;
-  title: string;
-  description: string;
-  slug: string;
-  path: string;
-  categories: DocsCategoryConfig[];
 };

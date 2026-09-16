@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Link } from "@/components/ui";
 import ContentTimeline from "@/components/ui/timeline/ContentTimeline";
 import projectsConfig from "@/packages/configs/projects.config";
-import { normalizeProjectsList } from "@/packages/utils/content-normlize";
+import { normalizeProjectsList } from "@/packages/utils/content-card";
 
 interface ProjectsCategoryPageProps {
   params: Promise<{ category: string }>;

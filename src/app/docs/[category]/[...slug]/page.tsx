@@ -1,4 +1,4 @@
-import DocsTemplate from "@/components/features/docs-app/DocsTemplate";
+import ContentTemplate from "@/components/features/docs-content-app/ContentTemplate";
 import { docsConfig } from "@/packages/configs/docs.config";
 
 export interface DocsPageProps {
@@ -19,10 +19,10 @@ export function generateStaticParams() {
   );
 }
 
-const DocsTemplatePage = async ({ params }: DocsPageProps) => {
+const DocsTemplateRoute = async ({ params }: DocsPageProps) => {
   const { category, slug } = await params;
 
-  return <DocsTemplate slug={[category, ...slug]} />;
+  return <ContentTemplate slug={[category, ...slug]} config={docsConfig} />;
 };
 
-export default DocsTemplatePage;
+export default DocsTemplateRoute;

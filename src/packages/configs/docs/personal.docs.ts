@@ -1,4 +1,5 @@
-import { type DocsItem, getFilePath } from "../docs.config";
+import type { ContentItem } from "@/types/content";
+import { getFilePath } from "../docs.config";
 
 const path = "/personal";
 export const personalDocs = [
@@ -29,4 +30,4 @@ export const personalDocs = [
     updatedAt: "26/08/2026",
     keywords: ["personal", "design", "image-generation", "prompt", "portfolio"],
   },
-] satisfies DocsItem[];
+] satisfies ContentItem[];

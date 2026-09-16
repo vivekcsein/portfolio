@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { useRef } from "react";
 import KeywordsButtons from "@/components/ui/keywords/KeywordsCopy";
-import type { ContentItem } from "@/packages/utils/content-normlize";
+import type { ContentCardItem } from "@/packages/utils/content-card";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -15,7 +15,7 @@ interface ContentTimelineProps {
   heading: string;
   /** Small label above the heading. Defaults to "Explore". */
   eyebrow?: string;
-  contentList: ContentItem[];
+  contentList: ContentCardItem[];
 }
 
 const ContentTimeline = ({

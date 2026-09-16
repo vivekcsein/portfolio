@@ -77,6 +77,7 @@ const appConfig = {
     about: "/about",
 
     docs: "/docs",
+    code: "/code",
     projects: "/projects",
     techStack: "/tech-stack",
     blogs: "/blogs",

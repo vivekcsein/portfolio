@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Markdown from "@/components/ui/markdown/Markdown";
 import { getContent, getContentBySlug } from "@/packages/utils/get-content";
 
-import "@/styles/ui/docs-heading.css";
+import "@/styles/ui/content-heading.css";
 import ContentHeading from "./ContentHeading";
 
 interface ContentTemplateProps {

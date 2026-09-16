@@ -1,4 +1,5 @@
-import { type CodeItem, getFilePath } from "../code.config";
+import type { ContentItem } from "@/types/content";
+import { getFilePath } from "../code.config";
 
 const path = "/code";
 
@@ -14,4 +15,4 @@ export const arrayInJsCode = [
     updatedAt: "04/08/2026",
     keywords: ["array", "javascript"],
   },
-] satisfies CodeItem[];
+] satisfies ContentItem[];

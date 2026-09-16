@@ -17,7 +17,7 @@ const ContentHeading = ({ content, config }: ContentHeadingProps) => {
           className="content-heading__back-link"
         >
           <span aria-hidden="true">←</span>
-          <span>Back to Content</span>
+          <span>Back to {config.title}</span>
         </Link>
       </div>
 

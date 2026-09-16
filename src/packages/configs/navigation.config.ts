@@ -74,6 +74,12 @@ export const mainNav: NavTab[] = [
   },
 
   {
+    id: "code",
+    title: "Code",
+    href: appConfig.routes.code,
+  },
+
+  {
     id: "journey",
     title: "Journey",
     href: appConfig.routes.journey,

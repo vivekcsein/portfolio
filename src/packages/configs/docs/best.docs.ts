@@ -1,4 +1,5 @@
-import { type DocsItem, getFilePath } from "../docs.config";
+import type { ContentItem } from "@/types/content";
+import { getFilePath } from "../docs.config";
 
 const path = "/best";
 
@@ -28,4 +29,4 @@ export const bestDocs = [
     updatedAt: "",
     keywords: ["best", "job", "website", "india", "global", "2026"],
   },
-] satisfies DocsItem[];
+] satisfies ContentItem[];

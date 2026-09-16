@@ -1,4 +1,5 @@
-import { type DocsItem, getFilePath } from "../docs.config";
+import type { ContentItem } from "@/types/content";
+import { getFilePath } from "../docs.config";
 
 const path = "/dev";
 
@@ -267,4 +268,4 @@ export const developmentDocs = [
       "advanced",
     ],
   },
-] satisfies DocsItem[];
+] satisfies ContentItem[];

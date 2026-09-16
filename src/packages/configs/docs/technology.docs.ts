@@ -1,4 +1,5 @@
-import { type DocsItem, getFilePath } from "../docs.config";
+import type { ContentItem } from "@/types/content";
+import { getFilePath } from "../docs.config";
 
 const path = "/technology";
 export const technologyDocs = [
@@ -29,4 +30,4 @@ export const technologyDocs = [
     updatedAt: "24/08/2026",
     keywords: ["technology", "blender", "3d", "models", "python", "prompts"],
   },
-] satisfies DocsItem[];
+] satisfies ContentItem[];

@@ -32,6 +32,10 @@ export type ContentCategoryConfig<
 export type ContentConfig<
   TCategory extends ContentCategoryKey = ContentCategoryKey,
 > = {
+  key: string;
+  title: string;
+  description: string;
+  slug: string;
   path: string;
   categories: ContentCategoryConfig<TCategory>[];
 };
