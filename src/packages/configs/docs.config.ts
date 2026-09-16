@@ -1,4 +1,5 @@
 import {
+  bestDocs,
   businessDocs,
   developmentDocs,
   interviewDocs,
@@ -11,6 +12,7 @@ export { getFilePath } from "../utils/get-file";
 
 export type DocsCategory =
   | "business"
+  | "best"
   | "development"
   | "technology"
   | "personal"
@@ -54,6 +56,14 @@ export const docsConfig = {
       description:
         "Guides, resources, and practical documentation covering business operations, strategy, planning, productivity, and professional growth.",
       children: businessDocs,
+    },
+
+    {
+      key: "best",
+      title: "Best Practices",
+      description:
+        "Guides, resources, and practical documentation covering best practices, tips, and tricks for various aspects of software development, engineering, and business.",
+      children: bestDocs,
     },
 
     {
