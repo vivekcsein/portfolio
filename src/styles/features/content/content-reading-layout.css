@@ -1,0 +1,31 @@
+.content-reading-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+}
+
+/* .content-simple-page already has its own max-width + margin:auto —
+ * inside this flex row it just needs to not shrink past that. */
+.content-reading-layout .content-simple-page {
+  flex-shrink: 1;
+  margin-inline: 0;
+}
+
+.content-reading-rail {
+  position: sticky;
+  top: 96px;
+  flex-shrink: 0;
+
+  /* Only ever shown once there's real room beside the 860px reading
+   * column — see the min-width media query below. */
+  display: none;
+}
+
+/* 860px column + 2 × (160px rail + 32px gap) + breathing room */
+@media (min-width: 1400px) {
+  .content-reading-rail {
+    display: block;
+  }
+}

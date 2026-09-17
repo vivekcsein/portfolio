@@ -1,4 +1,4 @@
-import "@/styles/ui/content.css";
+import "@/styles/features/content/content-timeline.css";
 
 interface ProjectsLayoutPageProps {
   children: React.ReactNode;

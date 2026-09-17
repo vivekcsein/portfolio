@@ -1,4 +1,4 @@
-import "@/styles/ui/content-timeline.css";
+import "@/styles/features/content/content-timeline.css";
 
 interface CodeCategoryLayoutProps {
   children: React.ReactNode;

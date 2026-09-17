@@ -1,0 +1,27 @@
+.ad-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  flex-shrink: 0;
+  border-radius: 0.75rem;
+  border: 1px dashed color-mix(in oklch, var(--border) 90%, transparent);
+  background: color-mix(in oklch, var(--muted) 40%, transparent);
+}
+
+.ad-slot-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+
+.ad-slot-size {
+  font-size: 0.65rem;
+  color: var(--muted-foreground);
+  opacity: 0.4;
+}

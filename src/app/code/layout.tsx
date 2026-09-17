@@ -1,4 +1,4 @@
-import "@/styles/ui/content.css";
+import "@/styles/features/content/content.css";
 interface CodeLayoutProps {
   children: React.ReactNode;
 }

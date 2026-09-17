@@ -8,10 +8,9 @@
 @import "./utils/app.css";
 @import "./utils/theme.css";
 
-@import "./theme/sparkverse-theme.css";
 @import "./ui/drawer.css";
 @import "./ui/navigation.css";
 
-@import "./ui/hero-scene.css";
+@import "./theme/sparkverse-theme.css";
 
 @custom-variant dark (&:is(.dark *));
